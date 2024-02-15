@@ -1,0 +1,18 @@
+{
+  "name": "fitschedular-backend",
+  "version": "1.0.0",
+  "description": "Application for managing schedules from a physical training room",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "author": "CprAlin",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.4",
+    "express": "^4.18.2",
+    "mongoose": "^8.1.2",
+    "nodemon": "^3.0.3"
+  }
+}
