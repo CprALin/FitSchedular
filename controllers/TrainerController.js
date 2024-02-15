@@ -7,6 +7,7 @@ const populateOption = {
 }
 
 exports.getTrainers = factory.getAll(Trainer);
+exports.createTrainer = factory.createOne(Trainer);
 exports.getTrainer = factory.getOne(Trainer , populateOption);
 exports.updateTrainer = factory.updateOne(Trainer);
 exports.deleteTrainer = factory.deleteOne(Trainer);

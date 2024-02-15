@@ -9,5 +9,6 @@ const populateOptions = [
 
 exports.getParticipations = factory.getAll(Participation);
 exports.getParticipation = factory.getOne(Participation, populateOptions);
+exports.createParticipation = factory.createOne(Participation);
 exports.updateParticipation = factory.updateOne(Participation);
 exports.deleteParticipation = factory.deleteOne(Participation);
