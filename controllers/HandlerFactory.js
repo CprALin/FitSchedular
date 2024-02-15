@@ -46,7 +46,7 @@ exports.createOne = Model => catchAsync(async (req , res , next) => {
     });
 });
 
-exports.createOne = (Model , populateOption) => catchAsync(async (req, res, next) => {
+exports.getOne = (Model , populateOption) => catchAsync(async (req, res, next) => {
     let query = Model.findById(req.params.id);
 
     if(populateOption)
