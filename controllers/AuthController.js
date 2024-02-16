@@ -159,6 +159,85 @@ exports.restrictTo = (...roles) => {
     }
 }
 
+/* 
+exports.forgotPassword = catchAsync(async (req , res , next) => {
+    // get user based on posted email 
+    const user = await User.findOne({email : req.body.email});
+
+    if(!user)
+    {
+        return next(new AppError('There is no user with email address.' , 404));
+    }
+
+    // generate the random token
+    const resetToken = user.createPasswordResetToken();
+
+    try{
+        //dispose all validators 
+        await user.save({validateBeforeSave : false});
+
+        //send it to user's email
+        const resetURL = `${req.protocol}://${req.get('host')}/api/users/resetPassword/${resetToken}`;
+
+        res.status(200).json({
+            status : 'success',
+            message : 'Token sent to email !'
+        });
+    }catch(err){
+        user.createPasswordResetToken = undefined;
+        user.passwordResetExpires = undefined;
+        await user.save({validateBeforeSave : false});
+
+        return next(new AppError('There was an error sending the email . Try again later !' , 500));
+    }
+});
+ */
+
+exports.resetPassword = catchAsync(async (req , res, next) => {
+    
+    // get user based on the token
+    const hashedToken = crypto.createHash('sha256').update(req.params.token).digest('hex');
+
+    const user = await User.findOne({ passwordResetToken : hashedToken , passwordResetExpires : { $gt : Date.now() }});
+
+    //if token has not expired , and there is user , set the new password
+    if(!user)
+    {
+        return next(new AppError('Token is invalid or has expired !' , 400));
+    }
+
+    user.password = req.body.password;
+    user.passwordConfirm = req.body.passwordConfirm;
+    user.passwordResetToken = undefined;
+    user.passwordResetExpires = undefined;
+
+    await user.save();
+
+    // update changedPasswordAt property for the user
+
+    // Log the user in 
+    createSendToken(user, 200 , res);
+
+});
+
+exports.updatePassword = catchAsync(async (req , res , next) => {
+    // get user from collection 
+    const user = await User.findById(req.user.id).select('+password');
+
+    //check if POSTed current password is correct
+    if(!(user.correctPassword(req.body.passwordCurrent , user.password)))
+    {
+        return next(new AppError('Your current password is wrong' , 401));
+    }
+
+    // if so , update password
+    user.password = req.body.password;
+    user.passwordConfirm = req.body.passwordConfirm;
+    await user.save();
+
+    // log user in , send jwt
+    createSendToken(user , 200 , res);
+});
 
 
 
