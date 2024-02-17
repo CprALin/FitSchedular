@@ -1,12 +1,17 @@
 const express = require('express');
 const TrainerRouter = require('../controllers/TrainerController');
+const authController = require('../controllers/AuthController');
 
 //ROUTES
 const router = express.Router();
 
-router.route('/')
-      .get(TrainerRouter.getTrainers)
-      .post(TrainerRouter.createTrainer);
+router.use(authController.protect);
+
+router.get('/allTrainers' , TrainerRouter.getAllTrainers);
+
+router.use(authController.restrictTo('admin'));
+
+router.post('/addTrainer' , TrainerRouter.createTrainer);
 
 router
       .route('/:id')

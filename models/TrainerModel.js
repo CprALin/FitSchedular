@@ -24,6 +24,16 @@ const trainerSchema = new mongoose.Schema({
     }
 });
 
+//populate all documents
+trainerSchema.pre(/^find/ , function(next) {
+    this.populate({
+        path : 'user',
+        select : 'name photo'
+    });
+
+    next();
+});
+
 const Trainer = mongoose.model('Trainer' , trainerSchema);
 
 module.exports = Trainer;
