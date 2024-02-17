@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const Participation = require('./ParticipationModel');
 
 const appointmentSchema = new mongoose.Schema({
      trainer : {

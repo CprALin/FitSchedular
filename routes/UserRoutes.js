@@ -6,6 +6,7 @@ const authController = require('../controllers/AuthController');
 //ROUTES
 const router = express.Router();    
 
+
 router.post('/singup' , authController.singup);
 
 router.post('/login' , authController.login);
