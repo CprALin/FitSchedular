@@ -18,10 +18,35 @@ const appointmentSchema = new mongoose.Schema({
         type : Number,
         require : [true, 'An appointment must have a finish hour !']
      },
-     participations : {
-        type : mongoose.Schema.ObjectId,
-        ref : 'Participation'
-     }
+     images : [String],
+     slug : String
+}, {
+   toJSON : { virtuals : true },
+   toObject : { virtuals : true }
+});
+
+appointmentSchema.index({slug : 1});
+
+appointmentSchema.virtual('reviews' , {
+      ref : 'Review',
+      foreignField : 'appointment',
+      localField : '_id'
+});
+
+appointmentSchema.virtual('participations' , {
+      ref : 'Participation',
+      foreignField : 'appointment',
+      localField : '_id'
+});
+
+//populate all documents
+appointmentSchema.pre(/^find/ , function(next) {
+   this.populate({
+       path : 'trainer',
+       select : 'className classDescription'
+   });
+
+   next();
 });
 
 const Appointment = mongoose.model('Appointment' , appointmentSchema);
