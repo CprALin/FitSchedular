@@ -1,3 +1,4 @@
+const Trainer = require('../models/TrainerModel');
 const User = require('../models/UserModel');
 const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
@@ -84,13 +85,21 @@ exports.updateMe = catchAsync(async (req, res, next) => {
     });
 });
 
-// just set active status to false in case the user come back 
 exports.deleteMe = catchAsync(async (req , res , next) => {
-    await User.findByIdAndUpdate(req.user.id , {active : false});
+    const user = await User.findById(req.user.id);
 
-    res.status(204).json({
+    const existingTrainer = await Trainer.findOne({ user: user._id });
+
+    if(existingTrainer)
+    {
+        await Trainer.findByIdAndDelete(existingTrainer._id);
+    }
+
+    await User.findByIdAndDelete(user._id);
+
+    res.status(200).json({
         status : 'success',
-        data : null
+        message : 'User deleted successfully !'
     });
 });
 

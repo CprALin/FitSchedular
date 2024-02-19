@@ -8,6 +8,9 @@ const router = express.Router();
 router.use(authController.protect);
 
 router.get('/allTrainers' , TrainerRouter.getAllTrainers);
+router.route('/:id').get(TrainerRouter.getTrainer)
+
+router.patch('/updateTrainer', authController.restrictTo('trainer') , TrainerRouter.updateCurrentTrainer);
 
 router.use(authController.restrictTo('admin'));
 
@@ -15,8 +18,6 @@ router.post('/addTrainer' , TrainerRouter.createTrainer);
 
 router
       .route('/:id')
-      .get(TrainerRouter.getTrainer)
       .patch(TrainerRouter.updateTrainer)
-      .delete(TrainerRouter.deleteTrainer);
 
 module.exports = router;

@@ -3,7 +3,6 @@ const User = require('../models/UserModel');
 const factory = require('./HandlerFactory');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
-const { json } = require('body-parser');
 
 exports.createTrainer = catchAsync(async (req , res , next) => {
 
@@ -25,6 +24,8 @@ exports.createTrainer = catchAsync(async (req , res , next) => {
 
         if(user)
         {
+           await User.findByIdAndUpdate(user._id , {role : 'trainer'});
+
            const newTrainer = await Trainer.create({
                user: user._id,
                className: 'Add a Class',
@@ -48,8 +49,33 @@ exports.createTrainer = catchAsync(async (req , res , next) => {
 });
 
 
+exports.updateCurrentTrainer = catchAsync(async (req , res , next) => {
 
-exports.getAllTrainers = factory.getAll(Trainer);
+     try
+     {
+      const trainer = await Trainer.findOne({ user : req.user._id});
+
+      const updatedTrainer = await Trainer.findByIdAndUpdate( trainer._id , {
+         className : req.body.className,
+         classDescription : req.body.classDescription,
+         occupation : req.body.occupation,
+         studies : req.body.studies
+      } , { runValidators : true });
+
+      res.status(200).json({
+        status : 'success',
+        data : {
+           trainer
+        }
+      });
+
+     }catch(err){
+       return next(new AppError(`${err}`, 400));
+     }
+
+});
+
+
 exports.getTrainer = factory.getOne(Trainer);
+exports.getAllTrainers = factory.getAll(Trainer);
 exports.updateTrainer = factory.updateOne(Trainer);
-exports.deleteTrainer = factory.deleteOne(Trainer);
