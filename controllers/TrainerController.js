@@ -55,7 +55,7 @@ exports.updateCurrentTrainer = catchAsync(async (req , res , next) => {
      {
       const trainer = await Trainer.findOne({ user : req.user._id});
 
-      const updatedTrainer = await Trainer.findByIdAndUpdate( trainer._id , {
+      await Trainer.findByIdAndUpdate( trainer._id , {
          className : req.body.className,
          classDescription : req.body.classDescription,
          occupation : req.body.occupation,
