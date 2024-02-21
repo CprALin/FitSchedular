@@ -11,7 +11,7 @@ exports.createParticipation = catchAsync(async (res , req , next) => {
              appointment : req.params.appointmentId
         });
 
-        const participation = await Participation.
+        const participation = await Participation.findOne({ user : req.user._id});
 
         res.status(200).json({
             status : 'success',

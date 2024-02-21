@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const participationSchema = mongoose.Schema({
+const participationSchema = new mongoose.Schema({
     user : {
         type : mongoose.Schema.ObjectId,
         ref : 'User',
@@ -35,7 +35,7 @@ participationSchema.pre(/^find/ , function(next) {
     });
  
     next();
- });
+});
 
 
 
