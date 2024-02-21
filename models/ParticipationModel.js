@@ -17,6 +17,28 @@ const participationSchema = mongoose.Schema({
     }
 });
 
+//populate all documents
+participationSchema.pre(/^find/ , function(next) {
+    this.populate({
+        path : 'user',
+        select : 'name photo'
+    });
+ 
+    next();
+});
+
+//populate all documents
+participationSchema.pre(/^find/ , function(next) {
+    this.populate({
+        path : 'appointment',
+        select : 'trainer onDate startHour finishHour'
+    });
+ 
+    next();
+ });
+
+
+
 const Participation = mongoose.model('Participation' , participationSchema);
 
 module.exports = Participation;

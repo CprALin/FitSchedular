@@ -1,14 +1,31 @@
 const Participation = require('../models/ParticipationModel');
+const AppError = require('../utils/appError');
+const catchAsync = require('../utils/catchAsync');
 const factory = require('./HandlerFactory');
 
-const populateOptions = [
-    { path : 'user' , select : 'name photo'},
-    { path : 'appointment' , select : 'onDate startHour finishHour trainer'}
-];
-    
+exports.createParticipation = catchAsync(async (res , req , next) => {
+    try{
+
+        await Participation.create({
+             user : req.user._id,
+             appointment : req.params.appointmentId
+        });
+
+        const participation = await Participation.
+
+        res.status(200).json({
+            status : 'success',
+            data : {
+                participation
+            }
+        });
+
+    }catch(err){
+        return next(new AppError(`${err}` , 400));
+    }
+});
 
 exports.getParticipations = factory.getAll(Participation);
-exports.getParticipation = factory.getOne(Participation, populateOptions);
-exports.createParticipation = factory.createOne(Participation);
+exports.getParticipation = factory.getOne(Participation);
 exports.updateParticipation = factory.updateOne(Participation);
 exports.deleteParticipation = factory.deleteOne(Participation);
