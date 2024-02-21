@@ -5,18 +5,16 @@ const factory = require('./HandlerFactory');
 
 exports.createParticipation = catchAsync(async (res , req , next) => {
     try{
-
-        await Participation.create({
-             user : req.user._id,
-             appointment : req.params.appointmentId
+    
+        const participation = await Participation.create({
+                user : req.user._id,
+                appointment : req.params.appointmentId
         });
-
-        const participation = await Participation.findOne({ user : req.user._id});
 
         res.status(200).json({
             status : 'success',
             data : {
-                participation
+                participation    
             }
         });
 

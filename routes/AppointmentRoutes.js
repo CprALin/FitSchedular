@@ -10,7 +10,7 @@ router.get('/allAppointments' , AppointmentRouter.getAppointments);
 router.route('/:id').get(AppointmentRouter.getAppointment);
 
 router.use(authController.protect);
-router.use(authController.restrictTo('admin','trainer'));
+router.use(authController.restrictTo('trainer'));
 
 router.post('/newAppointment' , AppointmentRouter.createAppointment);
 
