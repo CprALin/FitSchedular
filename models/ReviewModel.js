@@ -41,47 +41,6 @@ reviewSchema.pre(/^find/ , function(next) {
     next();
 });
 
-reviewSchema.statics.calcAverageRatings = async function(appointmentId) {
-    const stats = await this.aggregate([
-        {
-            $match : { appointment : appointmentId }
-        },
-        {
-            $group : {
-                _id : '$appointment',
-                nRatings : { $sum : 1 },
-                avgRating : { $avg : '$rating' }
-            }
-        }
-    ]);
-
-    if(stats.length > 0){
-        await Appointment.findByIdAndUpdate(appointmentId , {
-            ratingsQuantity : stats[0].nRatings,
-            ratingsAvarage : stats[0].avgRating
-        });
-    }else{
-        await Appointment.findByIdAndUpdate(appointmentId , {
-            ratingsQuantity : 0,
-            ratingsAvarage : 4.5
-        });
-    }
-};
-
-reviewSchema.post('save' , function() {
-    this.constructor.calcAverageRatings(this.appointment);
-});
-
-reviewSchema.pre(/^findOneAnd/ , async function(next){
-    this.rate = await this.findOne();
-
-    next();
-});
-
-reviewSchema.post(/^findOneAnd/ , async function(){
-    await this.rate.constructor.calcAverageRatings(this.rate.appointment);
-});
-
 const Review = mongoose.model('Review' , reviewSchema);
 
 module.exports = Review;

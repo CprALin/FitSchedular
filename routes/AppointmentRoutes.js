@@ -2,6 +2,7 @@ const express = require('express');
 const AppointmentRouter = require('../controllers/AppointmentController');
 const authController = require('../controllers/AuthController');
 const ParticipationRouter = require('../controllers/ParticipationController');
+const ReviewRouter = require('../controllers/ReviewController');
 
 
 //ROUTES
@@ -20,6 +21,7 @@ router
       .patch(AppointmentRouter.updateAppointment)
       .delete(AppointmentRouter.deleteAppointment);
 
-router.post('/:appointmentId/addParticipation', ParticipationRouter.createParticipation);      
+router.post('/:appointmentId/addParticipation', ParticipationRouter.createParticipation);    
+router.post('/:appointmentId/addReview' , ReviewRouter.createReview);  
 
 module.exports = router;
