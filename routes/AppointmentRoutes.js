@@ -21,7 +21,9 @@ router
       .patch(AppointmentRouter.updateAppointment)
       .delete(AppointmentRouter.deleteAppointment);
 
-router.post('/:appointmentId/addParticipation', ParticipationRouter.createParticipation);    
-router.post('/:appointmentId/addReview' , ReviewRouter.createReview);  
+router.post('/:appointmentId/addParticipation', ParticipationRouter.createParticipation);
+router.get('/:appointmentId/participations' , authController.restrictTo('trainer'),ParticipationRouter.getAllParticipationsForAppointment);    
+router.post('/:appointmentId/addReview' , ReviewRouter.createReview);
+router.get('/:appointmentId/reviews' , ReviewRouter.getAllReviewsForAppointment);  
 
 module.exports = router;
