@@ -15,7 +15,6 @@ router.route('/')
 router
       .route('/:id')
       .get(ParticipationRouter.getParticipation)
-      .patch(ParticipationRouter.updateParticipation)
       .delete(ParticipationRouter.deleteParticipation);
 
 module.exports = router;

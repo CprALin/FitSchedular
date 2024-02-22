@@ -3,7 +3,8 @@ const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
 const factory = require('./HandlerFactory');
 
-exports.createParticipation = catchAsync(async (res , req , next) => {
+
+exports.createParticipation = catchAsync(async (req , res , next) => {
     try{
     
         const participation = await Participation.create({
