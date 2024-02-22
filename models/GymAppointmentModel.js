@@ -49,6 +49,7 @@ appointmentSchema.pre(/^find/ , function(next) {
    next();
 });
 
+
 const Appointment = mongoose.model('Appointment' , appointmentSchema);
 
 module.exports = Appointment;

@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.use(authController.protect);
 
-router.post('/addParticipation/:appointmentId', ParticipationRouter.createParticipation);
+router.post('/:appointmentId/addParticipation', ParticipationRouter.createParticipation);
 
 router.route('/')
       .get(ParticipationRouter.getParticipations);
