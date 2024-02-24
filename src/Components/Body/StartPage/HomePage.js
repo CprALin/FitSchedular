@@ -1,7 +1,7 @@
 function HomePage(){
     return(
-        <div className="home-page">
-            <p>Home Page</p>
+        <div className="home-page scroll-target" id="home-page">
+            
         </div>
     );
 }

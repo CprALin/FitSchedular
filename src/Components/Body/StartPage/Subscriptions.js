@@ -1,6 +1,6 @@
 function Subscriptions(){
     return(
-        <div className="subscriptions">
+        <div className="subscriptions scroll-target" id="subs">
             <p>Subscriptions</p>
         </div>
     );
