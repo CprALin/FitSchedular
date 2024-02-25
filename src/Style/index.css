@@ -159,9 +159,51 @@ body {
   }
 }
 .App .body .class-discover {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background-color: #22092C;
-  height: 450px;
+  height: auto;
+}
+.App .body .class-discover .class-containers {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.App .body .class-discover .class-containers .class-container {
+  display: flex;
+  justify-content: center;
+  height: 350px;
+  width: 350px;
+  overflow: hidden;
+  border-radius: 10px;
+  align-items: center;
+  cursor: pointer;
+  margin: 40px 40px;
+}
+.App .body .class-discover .class-containers .class-container h1 {
+  padding: 10px;
+  position: absolute;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  text-shadow: 0 0 6px #FFF;
+}
+.App .body .class-discover .class-containers .class-container img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+@media (max-width: 498px) {
+  .App .body .class-discover .class-containers .class-container {
+    height: 200px;
+    width: 200px;
+  }
+}
+.App .body .class-discover .discover-btn {
+  margin: 40px 30px;
 }
 .App .body .subscriptions {
   display: block;

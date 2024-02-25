@@ -1,5 +1,5 @@
-import Button from "./Button";
-import Logo from "./Logo";
+import Button from "../ReuseComp/Button";
+import Logo from "../ReuseComp/Logo";
 import NavList from "./NavList";
 
 function NavBar(){

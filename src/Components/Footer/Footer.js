@@ -1,4 +1,4 @@
-import Logo from "../Header/Logo";
+import Logo from "../ReuseComp/Logo";
 import NavList from "../Header/NavList";
 
 function Footer(){
