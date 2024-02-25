@@ -10,25 +10,25 @@ function AboutUs(){
             
             <div className="about-containers">
                 <div className="about-container">
-                    <IoMdCheckmarkCircleOutline />
+                    <IoMdCheckmarkCircleOutline className="about-logo"/>
                     <h2>Appointments</h2>
                     <p>It is easy to make an appointment, just a click away, we take care of the rest.</p>
                 </div>
 
                 <div className="about-container">
-                    <SiFireship />
+                    <SiFireship className="about-logo"/>
                     <h2>Motivation</h2>
                     <p>Unlock your full potential and embrace the power if fitness motivation with us.</p>
                 </div>
 
                 <div className="about-container">
-                    <FaRegFaceSmileBeam />
+                    <FaRegFaceSmileBeam className="about-logo"/>
                     <h2>Professional Staff</h2>
                     <p>Get to know our certified and friendly trainers who will guide you towards your desired goal.</p>
                 </div>
 
                 <div className="about-container">
-                    <LuHeartHandshake />
+                    <LuHeartHandshake className="about-logo"/>
                     <h2>Support</h2>
                     <p>We understand that the path to a healthier lifestyle can be challenging , we are here!</p>
                 </div>
