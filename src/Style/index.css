@@ -8,6 +8,7 @@ body {
   font-family: "Lato", sans-serif;
   font-weight: 400;
   font-style: normal;
+  cursor: default;
 }
 
 .App .header {
@@ -172,12 +173,79 @@ body {
   height: 450px;
 }
 .App .footer {
-  display: block;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
   color: #FFF;
-  min-height: 30vh;
   background: linear-gradient(rgba(135, 35, 65, 0.01), rgba(135, 35, 65, 0.7));
   background-color: #22092C;
-  position: absolute;
   left: 0;
   right: 0;
+}
+.App .footer .footer-title {
+  font-weight: bolder;
+}
+.App .footer .footer-logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 30px 30px;
+}
+.App .footer .footer-logo #footer-p {
+  color: #BBBBBB;
+}
+@media (max-width: 1097px) {
+  .App .footer .footer-logo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+.App .footer .footer-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 30px 30px;
+}
+.App .footer .footer-list ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.App .footer .footer-list ul li {
+  display: flex;
+  justify-content: center;
+}
+.App .footer .footer-list ul li a {
+  text-decoration: none;
+  color: #BBBBBB;
+}
+.App .footer .footer-contact {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 30px 30px;
+}
+.App .footer .footer-contact span {
+  color: #BBBBBB;
+}
+@media (max-width: 1097px) {
+  .App .footer .footer-contact {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+@media (max-width: 1097px) {
+  .App .footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }/*# sourceMappingURL=index.css.map */

@@ -3,20 +3,21 @@ import NavList from "../Header/NavList";
 
 function Footer(){
     return(
-        <footer className="footer scroll-target" id="footer">
+        <footer className="footer" id="footer">
+            
             <div className="footer-logo">
-                <Logo fontSize={'80px'} textSize={'30px'}/>
+                <Logo fontSize={'80px'} textSize={'30px'} margin={'0'}/>
                 <h2>Transform Your Body with <span>FitSchedular</span></h2>
-                <p>Use our schedule management app and make the change.</p>
+                <p id="footer-p">Use our schedule management app and make the change.</p>
             </div>
 
-            <div className="footer-pages">
-                <p>MAIN PAGES</p>
+            <div className="footer-list">
+                <p className="footer-title">MAIN PAGES</p>
                 <NavList />
             </div>
 
-            <div className="footer-social">
-                <p>SOCIAL MEDIA</p>
+            <div className="footer-list">
+                <p className="footer-title">SOCIAL MEDIA</p>
                 <ul>
                     <li><a href="#home-page">Instagram</a></li>
                     <li><a href="#home-page">Facebook</a></li>
@@ -26,7 +27,7 @@ function Footer(){
             </div>
 
             <div className="footer-contact">
-                <p>Contact</p>
+                <p className="footer-title">Contact</p>
                 <p> Phone : <span>0712453345</span></p>
                 <p> Email : <span>fit_shedular@gmail.com</span></p>
             </div>
