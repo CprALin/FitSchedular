@@ -206,8 +206,21 @@ body {
   margin: 40px 30px;
 }
 .App .body .subscriptions {
-  display: block;
-  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  height: auto;
+}
+.App .body .subscriptions .subscription-intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #000000;
+  margin: 40px 40px;
+}
+.App .body .subscriptions .subscription-intro .sub-p {
+  width: 30%;
 }
 .App .body .short-trainers {
   display: flex;

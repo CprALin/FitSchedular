@@ -272,8 +272,26 @@ body{
 
       .subscriptions
       {
-          display: block;
-          height: 400px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          text-align: center;
+          height: auto;
+
+          .subscription-intro
+          {
+             display: flex;
+             justify-content: space-between;
+             align-items: center;
+             color: #000000;
+             margin: 40px 40px;
+             
+             .sub-p 
+             {
+               width: 30%;  
+             }
+
+          }
       }
 
       .short-trainers
