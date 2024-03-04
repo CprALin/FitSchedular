@@ -20,12 +20,12 @@ function Subscriptions(){
 
                 <div className="subscription-container">
                      <h1>$60</h1>
-                     <section>
+                     <section className="plan-name">
                         <p>Starter Package</p>
                         <p>Billed annually</p>
                      </section>
 
-                     <section>
+                     <section className="plan-options">
                         <p><span><FaCheck /></span>Unlimited access to gym</p>
                         <p><span><FaCheck /></span>Facilities during regular hours</p>
                         <p><span><FaCheck /></span>Group fitness classes twice a week</p>
@@ -35,18 +35,18 @@ function Subscriptions(){
                     
 
                      <div className="subscription-btn">
-                         <Button padding={'10px 60px'}>Get started</Button>
+                         <Button padding={'10px 60px'} color={'#000000'}>Get started</Button>
                      </div>
                 </div>
 
                 <div className="subscription-container">
                      <h1>$84</h1>
-                     <section>
+                     <section className="plan-name">
                         <p>Starter Package</p>
                         <p>Billed annually</p>
                      </section>
 
-                     <section>
+                     <section className="plan-options">
                         <p><span><FaCheck /></span>Unlimited access to gym</p>
                         <p><span><FaCheck /></span>Facilities during regular hours</p>
                         <p><span><FaCheck /></span>Group fitness classes twice a week</p>
@@ -56,18 +56,18 @@ function Subscriptions(){
                     
 
                      <div className="subscription-btn">
-                         <Button padding={'10px 60px'}>Get started</Button>
+                         <Button padding={'10px 60px'} color={'#000000'}>Get started</Button>
                      </div>
                 </div>
 
                 <div className="subscription-container">
                      <h1>$120</h1>
-                     <section>
+                     <section className="plan-name">
                         <p>Starter Package</p>
                         <p>Billed annually</p>
                      </section>
 
-                     <section>
+                     <section className="plan-options">
                         <p><span><FaCheck /></span>Unlimited access to gym</p>
                         <p><span><FaCheck /></span>Facilities during regular hours</p>
                         <p><span><FaCheck /></span>Group fitness classes twice a week</p>
@@ -77,7 +77,7 @@ function Subscriptions(){
                     
 
                      <div className="subscription-btn">
-                         <Button padding={'10px 60px'}>Get started</Button>
+                         <Button padding={'10px 60px'} color={'#000000'}>Get started</Button>
                      </div>
                 </div>
 

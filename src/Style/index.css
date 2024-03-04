@@ -222,6 +222,48 @@ body {
 .App .body .subscriptions .subscription-intro .sub-p {
   width: 30%;
 }
+@media (max-width: 552px) {
+  .App .body .subscriptions .subscription-intro .sub-p {
+    width: 50%;
+  }
+}
+@media (max-width: 552px) {
+  .App .body .subscriptions .subscription-intro {
+    flex-direction: column;
+  }
+}
+.App .body .subscriptions .subscription-containers {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 60px 60px;
+}
+.App .body .subscriptions .subscription-containers .subscription-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: #BBBBBB;
+  margin: 40px 70px;
+  padding: 30px 30px;
+  border: 2px solid #FFF;
+  box-shadow: 0 5px 10px 8px rgba(170, 163, 163, 0.784);
+  border-radius: 10px;
+  color: #000000;
+}
+.App .body .subscriptions .subscription-containers .subscription-container h1 {
+  padding-left: 20px;
+}
+.App .body .subscriptions .subscription-containers .subscription-container .plan-name p {
+  padding-left: 20px;
+}
+.App .body .subscriptions .subscription-containers .subscription-container .plan-options {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
 .App .body .short-trainers {
   display: flex;
   flex-direction: column;
