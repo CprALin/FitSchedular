@@ -6,7 +6,7 @@ function Footer(){
         <footer className="footer" id="footer">
             
             <div className="footer-logo">
-                <Logo fontSize={'80px'} textSize={'30px'} margin={'0'}/>
+                <Logo fontSize={'80px'} textSize={'30px'} margin={'0'} marginTextTop={'23px'}/>
                 <h2>Transform Your Body with <span>FitSchedular</span></h2>
                 <p id="footer-p">Use our schedule management app and make the change.</p>
             </div>

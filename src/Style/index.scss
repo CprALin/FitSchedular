@@ -6,6 +6,14 @@ $thrColor : #BE3144;
 $fourClor : #F05941;
 $textColor : #FFF;
 
+$primary : $fourClor;
+$secondary: $mainColor;
+$dark : $fourClor;
+$light : $textColor;
+
+
+@import '~bootstrap/scss/bootstrap';
+
 html{
   scrollbar-width: none;
   scroll-behavior: smooth;
@@ -407,8 +415,29 @@ body{
 
       .login-page
       {
+         display: flex;
+         justify-content: center;
          min-height: 100vh;
          background-color: $mainColor;
+
+         .login-form
+         {
+           display: flex;
+           justify-content: center;
+           flex-direction: column;
+           align-items: center;
+
+           .mb-3
+           {
+             width: 40rem;
+             input 
+             {
+               background-color: $thrColor;
+               border-color: $fourClor;
+             }
+           }
+
+         }
       }
 
   }

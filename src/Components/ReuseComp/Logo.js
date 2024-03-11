@@ -1,6 +1,6 @@
 import { GiWeightLiftingUp } from "react-icons/gi";
 
-function Logo({fontSize , textSize , margin}){
+function Logo({fontSize , textSize , margin , marginTextTop}){
 
     function handleDivClick() {
         const element = document.getElementById('home-page');
@@ -21,7 +21,8 @@ function Logo({fontSize , textSize , margin}){
         },
         p : {
             fontSize : textSize || '17px',
-            fontWeight : 'bolder'
+            fontWeight : 'bolder',
+            marginTop : marginTextTop || '15px'
         }
     };
 
