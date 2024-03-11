@@ -6,7 +6,7 @@ function Logo({fontSize , textSize , margin}){
         const element = document.getElementById('home-page');
         if (element) {
           element.scrollIntoView();
-        }
+        }   
     }
     
     const logoStyle = {

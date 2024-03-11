@@ -13,10 +13,9 @@ body {
 
 .App .header {
   display: flex;
-  margin-top: 20px;
   border-bottom: 2px solid #BE3144;
-  left: 20px;
-  right: 20px;
+  left: 0;
+  right: 0;
   position: fixed;
   background-color: rgba(135, 35, 65, 0.7);
   color: #FFF;
@@ -41,6 +40,7 @@ body {
   position: relative;
   color: #FFF;
   text-decoration: none;
+  cursor: pointer;
 }
 .App .header .nav-bar .nav-list li a:hover {
   text-shadow: 0 0 10px #FFF, 0 0 20px #FFF, 0 0 40px #FFF;
@@ -306,6 +306,10 @@ body {
     height: 200px;
     width: 200px;
   }
+}
+.App .body .login-page {
+  min-height: 100vh;
+  background-color: #22092C;
 }
 .App .footer {
   display: flex;

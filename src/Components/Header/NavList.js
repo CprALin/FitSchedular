@@ -1,15 +1,22 @@
+import { Link } from "react-router-dom";
 
 function NavList(){
 
+    const handleLinkClick = (id) => {
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView();
+        }
+      };
 
     return(
         <div className="nav-list">
-            <ul>
-                    <li><a href="#home-page">Home</a></li>
-                    <li><a href="#about-us">About</a></li>
-                    <li><a href="#subs">Price</a></li>
-                    <li><a href="#footer">Contact</a></li>
-            </ul>
+                <ul>
+                    <li><Link to="/" onClick={() => handleLinkClick("home-page")}>Home</Link></li>
+                    <li><Link to="/" onClick={() => handleLinkClick("about-us")}>About</Link></li>
+                    <li><Link to="/" onClick={() => handleLinkClick("subs")}>Price</Link></li>
+                    <li><Link to="/" onClick={() => handleLinkClick("footer")}>Contact</Link></li>
+                </ul>
         </div>
     );
 }

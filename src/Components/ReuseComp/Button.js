@@ -20,7 +20,7 @@ const buttonStyle = {
   }
 };
 
-function Button({ children, padding , color}) {
+function Button({ event ,children, padding , color}) {
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseEnter = () => {
@@ -41,6 +41,7 @@ function Button({ children, padding , color}) {
       }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      onClick={event}
     >
       {children}
     </button>
