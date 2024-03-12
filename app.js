@@ -5,6 +5,7 @@ const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
 
 
 const AppointmentRouter = require('./routes/AppointmentRoutes');
@@ -47,6 +48,7 @@ app.use((req , res , next) => {
     next();
 });
 
+app.use(cors());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
