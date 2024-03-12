@@ -5,8 +5,11 @@ import Alert from 'react-bootstrap/Alert';
 import { Link , useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
+import { useAuth } from '../../../Utils/AuthContext';
 
 function LoginPage(){
+    const { login } = useAuth();
+
     const [email , setEmail] = useState('');
     const [password , setPassword] = useState('');
     const [showAlert , setShowAlert] = useState(false);
@@ -33,20 +36,22 @@ function LoginPage(){
                     password : password
                 });
     
-                localStorage.setItem("jwt" , response.token);
-    
+                login(response.data);
+
                 setAlertVariant('success');
-                setAlertMessage('Login successful !');
+                setAlertMessage('Login successfully !');
                 setShowAlert(true);
     
                 setTimeout(() => {
                     setShowAlert(false);
+                    setEmail('');
+                    setPassword('');
                     navigate("/");
-                }, 1500);
+                }, 1000);
     
             }catch(err){
                 setAlertVariant('danger');
-                setAlertMessage(`Oh snap ! Login failed : Incorect email or password!`);
+                setAlertMessage(`Login failed ! - Incorect email or password`);
                 setShowAlert(true);
     
                 setTimeout(() => {
