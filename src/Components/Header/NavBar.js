@@ -7,7 +7,7 @@ function NavBar(){
     const navigate = useNavigate();
     const location = useLocation();
 
-    const isOnLoginPage =   location.pathname === "/login-page";
+    const isOnLoginPage =   location.pathname === "/login-page" || location.pathname === "/register-page";
 
     const handlePageClick = () => {
         navigate("/login-page");

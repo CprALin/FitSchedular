@@ -4,9 +4,12 @@ import Button from '../../ReuseComp/Button';
 import { Link } from 'react-router-dom';
 
 function RegisterPage(){
+
+    window.scrollTo({ top : 0});
+
     return(
-        <div className="register-page">
-            <div className="register-form">
+        <div className="login-page">
+            <div className="login-form">
                 <h2>Hello !</h2>
                 <FloatingLabel controlId="floatingInputName" label="Name" className="mb-3">
                     <Form.Control type="text" placeholder="Name" />
@@ -22,9 +25,11 @@ function RegisterPage(){
                 </FloatingLabel>
                 <div className='btn-register'>
                    <Button>Register</Button>  
-                   <p>You have an account ? <Link>Login</Link></p>
+                   <p>You have an account ? <Link to="/login-page">Login</Link></p>
                 </div>
             </div>
         </div>
     );
 }
+
+export default RegisterPage;

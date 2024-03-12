@@ -19,7 +19,7 @@ function LoginPage(){
                 </FloatingLabel>
                 <div className='btn-register'>
                    <Button>Login</Button>  
-                   <p>You don't have an account ? <Link>Register</Link></p>
+                   <p>You don't have an account ? <Link to="/register-page">Register</Link></p>
                 </div>
             </div>
         </div>
