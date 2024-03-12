@@ -6,7 +6,7 @@ const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
-
+const globalErr = require('./controllers/ErrorController');
 
 const AppointmentRouter = require('./routes/AppointmentRoutes');
 const ParticipationRouter = require('./routes/ParticipationRoutes');
@@ -58,5 +58,11 @@ app.use('/api/appointments' , AppointmentRouter);
 app.use('/api/participations' , ParticipationRouter);
 app.use('/api/trainers' , TrainerRouter);
 app.use('/api/users' , UserRouter);
+
+app.all('*' , (req , res , next) => {
+    next(new AppError(`Cant find ${req.originalUrl} on this server!`,404));
+});
+
+app.use(globalErr);
 
 module.exports = app;

@@ -34,6 +34,27 @@ const createSendToken = (user, statusCode , res) => {
 }
 
 exports.singup = catchAsync(async (req , res , next) => {
+    const {name , email , password , passwordConfirm} = req.body;
+
+    if(!name || !email || !password || !passwordConfirm)
+    {
+        return next(new AppError('Please provide all data !', 400));
+    }
+
+    const user = await User.findOne({email});
+
+    if(user)
+    {
+        return next(new AppError('An account with this email already exist !', 400));
+    }
+
+    const userName = await User.findOne({name});
+
+    if(userName)
+    {
+        return next(new AppError('Please change the name !', 400));
+    }
+
     const newUser = await User.create({
         name : req.body.name,
         email : req.body.email,
