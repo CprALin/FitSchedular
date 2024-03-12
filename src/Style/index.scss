@@ -427,6 +427,11 @@ body{
            flex-direction: column;
            align-items: center;
 
+           h1 
+           {
+             margin: 50px 50px;
+           }
+
            .mb-3
            {
              width: 40rem;
@@ -434,9 +439,28 @@ body{
              {
                background-color: $thrColor;
                border-color: $fourClor;
+               color: $textColor;
+             }
+
+             @media(max-width:837px)
+             {
+                width: 25rem;
+             }
+
+             @media(max-width:837px)
+             {
+                width: 15rem;
              }
            }
 
+           .btn-register
+           {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              
+           }
          }
       }
 
