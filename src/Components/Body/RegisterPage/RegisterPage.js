@@ -10,7 +10,7 @@ function RegisterPage(){
     return(
         <div className="login-page">
             <div className="login-form">
-                <h2>Hello !</h2>
+                <h1>Hello !</h1>
                 <FloatingLabel controlId="floatingInputName" label="Name" className="mb-3">
                     <Form.Control type="text" placeholder="Name" />
                 </FloatingLabel>
