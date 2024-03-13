@@ -12027,6 +12027,26 @@ body {
     flex-direction: column;
   }
 }
+.App .header .nav-bar .nav-user-div {
+  display: flex;
+  align-items: center;
+}
+.App .header .nav-bar .nav-user-div .nav-user-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-right: 2px solid #F05941;
+  cursor: pointer;
+  position: absolute;
+  right: 10%;
+}
+.App .header .nav-bar .nav-user-div .nav-user-info p {
+  margin: 5px 12px;
+}
+.App .header .nav-bar .nav-user-div .nav-user-info img {
+  border-radius: 20px;
+  border: 2px solid #F05941;
+}
 @media (max-width: 426px) {
   .App .header {
     margin: 0;

@@ -93,6 +93,35 @@ body{
          {
            flex-direction: column;
          }
+
+         .nav-user-div
+         {
+            display: flex;
+            align-items: center;
+          
+            .nav-user-info
+            {
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              border-right: 2px solid $fourClor;
+              cursor: pointer;
+              position: absolute;
+              right: 10%;
+              
+              p
+              {
+                margin: 5px 12px;
+              }
+
+              img
+              {
+                border-radius: 20px;
+                border: 2px solid $fourClor;
+              }
+            }
+         }
+    
       }
 
       @media(max-width : 426px )
