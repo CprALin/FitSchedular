@@ -9,9 +9,9 @@ function App() {
     <div className="App">
       <Router>
         <AuthProvider>
-          <Header />
-          <Body />
-          <Footer />
+            <Header />
+            <Body />
+            <Footer />
         </AuthProvider>
       </Router>  
     </div>

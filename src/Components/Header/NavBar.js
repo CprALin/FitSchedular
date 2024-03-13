@@ -5,6 +5,7 @@ import { useLocation , useNavigate } from "react-router-dom";
 import { useAuth } from "../../Utils/AuthContext";
 import UserInfo from "./UserInfo";
 
+
 function NavBar(){
     const navigate = useNavigate();
     const location = useLocation();
@@ -15,6 +16,7 @@ function NavBar(){
     const handlePageClick = () => {
         navigate("/login-page");
     }
+
 
     return(
         <div className="nav-bar">
