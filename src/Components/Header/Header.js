@@ -1,9 +1,13 @@
 import NavBar from "./NavBar";
 import { useState , useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 function Header(){
+    const location = useLocation();
     const [isNavBarVisible, setIsNavBarVisible] = useState(true);
     const [prevScrollPos, setPrevScrollPos] = useState(0);
+
+    const isOnUserPage = location.pathname === "/user-profile";
   
     useEffect(() => {
       const handleScroll = () => {
@@ -20,7 +24,7 @@ function Header(){
     }, [prevScrollPos]);
 
     return(
-        <header className="header" style={{ transform: isNavBarVisible ? 'translateY(0)' : 'translateY(-100%)', transition: 'transform 0.3s ease' }}>
+        <header className="header" style={{ display : isOnUserPage ? 'none' : 'flex' , transform: isNavBarVisible ? 'translateY(0)' : 'translateY(-100%)', transition: 'transform 0.3s ease' }}>
             <NavBar />
         </header>
     );

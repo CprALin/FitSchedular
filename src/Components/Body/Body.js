@@ -3,13 +3,16 @@ import LoginPage from "./LoginPage/LoginPage";
 import { Routes , Route , Navigate } from "react-router-dom";
 import RegisterPage from "./RegisterPage/RegisterPage";
 import UserPage from "./UserPage/UserPage";
+import { useAuth } from "../../Utils/AuthContext";
 
 function Body(){
+    const { user } = useAuth();
+
     return(
         <div className="body">
             <Routes>
                 <Route exact path="/" element={<StartPage />}/>
-                <Route path="/user-profile" element={<UserPage />}/>
+                <Route path="/user-profile" element={user ? <UserPage /> : <Navigate to="/login-page"/>}/>
                 <Route path="/login-page" element={<LoginPage />}/>
                 <Route path="/register-page" element={<RegisterPage />}/>
                 <Route path="*" element={<Navigate to="/"/>}/>

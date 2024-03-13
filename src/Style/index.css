@@ -12333,6 +12333,84 @@ body {
   justify-content: center;
   align-items: center;
 }
+.App .body .user-page {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  min-height: 100vh;
+  background-color: #22092C;
+}
+.App .body .user-page #close {
+  cursor: pointer;
+  position: absolute;
+  right: 30px;
+  top: 10px;
+}
+.App .body .user-page #close:hover {
+  text-shadow: 0 0 10px #FFF, 0 0 20px #FFF, 0 0 40px #FFF;
+}
+.App .body .user-page .user-options {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 20%;
+  background: linear-gradient(rgba(135, 35, 65, 0.7), rgba(135, 35, 65, 0.01));
+  padding: 20px 3%;
+}
+.App .body .user-page .user-options .option {
+  display: flex;
+  align-items: center;
+  color: #FFF;
+  margin-top: 20px;
+  padding-left: 7px;
+  cursor: pointer;
+}
+.App .body .user-page .user-options .option a {
+  color: #FFF;
+  text-decoration: none;
+  margin-left: 10px;
+}
+.App .body .user-page .user-options .option:hover {
+  border-left: 2px solid #F05941;
+}
+.App .body .user-page .user-profile-settings {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 50%;
+}
+.App .body .user-page .user-profile-settings .image-settings {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.App .body .user-page .user-profile-settings .image-settings .mb-3 {
+  width: 20rem;
+}
+.App .body .user-page .user-profile-settings .image-settings img {
+  width: 50px;
+  height: 50px;
+  border-radius: 20px;
+  border: 2px solid #F05941;
+}
+.App .body .user-page .mb-3 {
+  width: 30rem;
+}
+.App .body .user-page .mb-3 input {
+  background-color: #BE3144;
+  border-color: #F05941;
+  color: #FFF;
+}
+@media (max-width: 837px) {
+  .App .body .user-page .mb-3 {
+    width: 25rem;
+  }
+}
+@media (max-width: 837px) {
+  .App .body .user-page .mb-3 {
+    width: 15rem;
+  }
+}
 .App .footer {
   display: flex;
   justify-content: space-between;

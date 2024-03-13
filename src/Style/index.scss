@@ -3,12 +3,12 @@ $backColor : #D9D9D9;
 $secBackColor : #BBBBBB;
 $secColor : #872341;
 $thrColor : #BE3144;
-$fourClor : #F05941;
+$fourColor : #F05941;
 $textColor : #FFF;
 
-$primary : $fourClor;
+$primary : $fourColor;
 $secondary: $mainColor;
-$dark : $fourClor;
+$dark : $fourColor;
 $light : $textColor;
 
 
@@ -104,7 +104,7 @@ body{
               display: flex;
               flex-direction: row;
               align-items: center;
-              border-right: 2px solid $fourClor;
+              border-right: 2px solid $fourColor;
               cursor: pointer;
               position: absolute;
               right: 10%;
@@ -117,7 +117,7 @@ body{
               img
               {
                 border-radius: 20px;
-                border: 2px solid $fourClor;
+                border: 2px solid $fourColor;
               }
             }
          }
@@ -169,7 +169,7 @@ body{
 
                span
                {
-                 color: $fourClor;
+                 color: $fourColor;
                  text-shadow: 0 0 10px $thrColor  ;
                }
 
@@ -467,7 +467,7 @@ body{
              input 
              {
                background-color: $thrColor;
-               border-color: $fourClor;
+               border-color: $fourColor;
                color: $textColor;
              }
 
@@ -491,6 +491,112 @@ body{
               
            }
          }
+      }
+
+      .user-page
+      {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        min-height: 100vh;
+        background-color: $mainColor;
+
+        #close 
+        {
+            cursor: pointer; 
+            position: absolute;
+            right: 30px;
+            top: 10px;
+
+            &:hover
+            {
+              text-shadow: 0 0 10px #FFF,
+                           0 0 20px #FFF,
+                           0 0 40px #FFF;
+            }
+        }
+
+        .user-options
+        {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          width: 20%;
+          background: linear-gradient(rgba($color: $secColor, $alpha: 0.7) , rgba($color: $secColor, $alpha: 0.01));
+          padding: 20px 3%;
+
+          .option 
+          {
+            display: flex;
+            align-items: center;
+            color: $textColor;
+            margin-top: 20px;
+            padding-left: 7px;
+            cursor: pointer;
+
+            a 
+            {
+              color: $textColor;
+              text-decoration: none;
+              margin-left: 10px;
+            }
+
+            &:hover 
+            {
+              border-left: 2px solid $fourColor;
+            }
+            
+          }
+        }
+
+        .user-profile-settings
+        {
+          display: flex;
+          justify-content: center;
+          flex-direction: column;
+          width: 50%;
+          
+           .image-settings 
+           {
+              display: flex;
+              justify-content: space-around;
+              align-items: center;
+
+              .mb-3
+              {
+                width: 20rem;
+              }
+
+              img 
+              {
+                width: 50px;
+                height: 50px;
+                border-radius: 20px;
+                border: 2px solid $fourColor;
+              }
+           }
+        }
+
+        .mb-3
+        {
+          width: 30rem;
+          input 
+          {
+            background-color: $thrColor;
+            border-color: $fourColor;
+            color: $textColor;
+          }
+
+          @media(max-width:837px)
+          {
+             width: 25rem;
+          }
+
+          @media(max-width:837px)
+          {
+             width: 15rem;
+          }
+        }
       }
   }
 
@@ -525,7 +631,7 @@ body{
 
         span 
         {
-          color: $fourClor;
+          color: $fourColor;
         }
 
         @media(max-width:1097px)
