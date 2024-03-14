@@ -7,7 +7,7 @@ function Header(){
     const [isNavBarVisible, setIsNavBarVisible] = useState(true);
     const [prevScrollPos, setPrevScrollPos] = useState(0);
 
-    const isOnUserPage = location.pathname === "/user-profile";
+    const isOnUserPage = location.pathname === "/user-profile" || location.pathname === "/user-appointments";
   
     useEffect(() => {
       const handleScroll = () => {

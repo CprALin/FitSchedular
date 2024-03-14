@@ -12373,16 +12373,22 @@ body {
 .App .body .user-page .user-options .option:hover {
   border-left: 2px solid #F05941;
 }
+.App .body .user-page .user-options .option.active {
+  border-left: 2px solid #F05941;
+}
 .App .body .user-page .user-profile-settings {
   display: flex;
   justify-content: center;
   flex-direction: column;
+  align-items: center;
   width: 65%;
 }
 .App .body .user-page .user-profile-settings .settings-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 110px;
+  margin-bottom: 50px;
 }
 .App .body .user-page .user-profile-settings h1, .App .body .user-page .user-profile-settings .h1 {
   margin: 40px 20px;

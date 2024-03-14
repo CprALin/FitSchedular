@@ -1,47 +1,18 @@
 import { useAuth } from "../../../Utils/AuthContext";
 import Form from 'react-bootstrap/Form';
-import { useNavigate , Link } from "react-router-dom";
-import { IoMdSettings } from "react-icons/io";
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
-import { LuCalendarSearch } from "react-icons/lu";
-import { FaRegStar } from "react-icons/fa6";
-import { FaCreditCard } from "react-icons/fa";
 import { useState } from "react";
 import Button from "../../ReuseComp/Button";
+import UserOptions from "./UserOptions";
 
 function UserPage(){
     const { user } = useAuth();
-    const navigate = useNavigate();
     const [name , setName] = useState(`${user.data.user.name}`);
     const [email , setEmail] = useState(`${user.data.user.email}`);
 
-
-    const handleHomePage = () => {
-        navigate("/");
-    }
-
     return(
        <div className="user-page">
-           <h1 id="close" onClick={handleHomePage}>x</h1>
-           
-           <section className="user-options">
-                <div className="option">
-                    <IoMdSettings />
-                    <Link to="/user-profile">Settings</Link>
-                </div>
-                <div className="option">
-                    <LuCalendarSearch />
-                    <Link>Appointments</Link>
-                </div>
-                <div className="option">
-                    <FaRegStar />
-                    <Link>My Reviews</Link>
-                </div>
-                <div className="option">
-                    <FaCreditCard />
-                    <Link>Billing</Link>
-                </div>
-           </section>
+           <UserOptions />
 
            <section className="user-profile-settings">
             
@@ -66,6 +37,25 @@ function UserPage(){
 
 
                     <Button padding={'10px 20px'}>Save settings</Button>
+                </div>
+
+                <div className="settings-container">
+                    <h1>Password Change</h1>
+
+                    <FloatingLabel controlId="floatingOldPassword" label="Password" className="mb-3">
+                        <Form.Control type="password" placeholder="Password"/>
+                    </FloatingLabel>
+
+                    <FloatingLabel controlId="floatingNewPassword" label="Password" className="mb-3">
+                        <Form.Control type="password" placeholder="Password"/>
+                    </FloatingLabel>
+
+                    <FloatingLabel controlId="floatingConfirmPassword" label="Confirm Password" className="mb-3">
+                        <Form.Control type="password" placeholder="Password"/>
+                    </FloatingLabel>
+
+
+                    <Button padding={'10px 20px'}>Change password</Button>
                 </div>
                 
            </section>
