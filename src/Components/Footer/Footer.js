@@ -1,9 +1,14 @@
 import Logo from "../ReuseComp/Logo";
 import NavList from "../Header/NavList";
+import {useLocation} from "react-router-dom";
 
 function Footer(){
+    const location = useLocation();
+
+    const isOnUserPage = location.pathname === "/user-profile" || location.pathname === "/login-page" || location.pathname === "/register-page";
+
     return(
-        <footer className="footer" id="footer">
+        <footer className="footer" id="footer" style={{ display : isOnUserPage ? 'none' : 'flex'}}>
             
             <div className="footer-logo">
                 <Logo fontSize={'80px'} textSize={'30px'} margin={'0'} marginTextTop={'23px'}/>

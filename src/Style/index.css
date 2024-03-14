@@ -12377,15 +12377,25 @@ body {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  width: 50%;
+  width: 65%;
+}
+.App .body .user-page .user-profile-settings .settings-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.App .body .user-page .user-profile-settings h1, .App .body .user-page .user-profile-settings .h1 {
+  margin: 40px 20px;
 }
 .App .body .user-page .user-profile-settings .image-settings {
   display: flex;
-  justify-content: space-around;
   align-items: center;
+  margin: 30px;
+  cursor: pointer;
 }
 .App .body .user-page .user-profile-settings .image-settings .mb-3 {
   width: 20rem;
+  margin-left: 30px;
 }
 .App .body .user-page .user-profile-settings .image-settings img {
   width: 50px;
