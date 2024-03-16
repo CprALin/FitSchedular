@@ -16,6 +16,11 @@ const UserRouter = require('./routes/UserRoutes');
 
 const app = express();
 
+app.use(cors({
+    origin : 'http://localhost:3000',
+    credentials : true
+}));
+
 //SET SECURITY HTTP
 app.use(helmet());
 
@@ -47,8 +52,6 @@ app.use((req , res , next) => {
     console.log(req.cookies);
     next();
 });
-
-app.use(cors());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

@@ -27,13 +27,13 @@ exports.uploadUserPhoto = upload.single('photo');
 exports.resizeUserPhoto = catchAsync(async (req , res , next) => {
     if(!req.file) return next();
 
-    req.file.filename = `user-${req.user.id}-${Date.now()}.jpeg`;
+    req.file.filename = `user-${req.user.id}-${Date.now()}.png`;
 
     await sharp(req.file.buffer)
         .resize(500,500, sharp.fit)
-        .toFormat('jpeg')
+        .toFormat('png')
         .jpeg({quality : 90})
-        .toFile(`img/users/${req.file.filename}`);
+        .toFile(`C:/Users/stfal/Desktop/fit-schedular-frontend/src/Images/users${req.file.filename}`);
 
     next();
 });
