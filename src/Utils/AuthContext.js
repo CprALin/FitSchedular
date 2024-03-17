@@ -13,10 +13,13 @@ const AuthProvider = ({children}) => {
     useEffect(() => {
         // Verificare autentificare la încărcarea componentei și la fiecare rerender
         const token = localStorage.getItem('jwt');
-        const storedUser = localStorage.getItem('userData');
+        const storedUser = JSON.parse(localStorage.getItem('userData'));
         if (token) {
-            setUser(JSON.parse(storedUser));
+            setUser(storedUser);
             setIsAuth(true);
+            axios.defaults.headers.common['Authorization'] = `Bearer ${storedUser.token}`;
+            axios.defaults.withCredentials = true;
+            Cookies.set('jwt' , storedUser.token);
         }
     }, []);
 

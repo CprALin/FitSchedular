@@ -14,11 +14,20 @@ function UserPage(){
     const { user } = useAuth();
     const [name , setName] = useState(`${user.data.user.name}`);
     const [email , setEmail] = useState(`${user.data.user.email}`);
-    const [ selectedFile , setSelectedFile ] = useState(`${user.data.user.photo}`);
+    const [ selectedFile , setSelectedFile ] = useState(`user-${user.data.user._id}-${Date.now()}.png`);
 
     const [alertMessage , setAlertMessage] = useState('');
     const [alertVariant , setAlertVariant] = useState('');
     const [showAlert , setShowAlert] = useState(false);
+
+    let userPhotoUrl;
+    try {
+        // Încercăm să încărcăm imaginea utilizatorului
+        userPhotoUrl = require(`../../../Images/users/${user.data.user.photo}`);
+    } catch (error) {
+        // Dacă apare o eroare, folosim imaginea implicită
+        userPhotoUrl = require('../../../Images/users/default.png');
+    }
 
     const handleFileChange = (event) => {
         setSelectedFile(event.target.files[0]);
@@ -28,26 +37,14 @@ function UserPage(){
         event.preventDefault();
 
         const formData = new FormData();
-        formData.append('photo' , selectedFile);
         formData.append('name', name);
         formData.append('email', email);
+        formData.append('photo' , selectedFile);
 
         try{
-           const response = await axios.patch(`http://localhost:8000/api/users/updateProfile/${user.data.user._id}` , formData);
+           const response = await axios.patch(`http://localhost:8000/api/users/updateMe` , formData);
 
-
-           console.log(response.data);
-/* 
-           , {
-            headers : {
-               'Content-Type': 'multipart/form-data',
-               'Authorization': `Bearer ${Cookies.get('jwt')}`
-            }
-        }
-
-           const newToken = response.headers.authorization.split(' ')[1];
-           Cookies.set('jwt', newToken); */
-
+           user.data.user = response.data.data.user;           
 
            setAlertVariant('success');
            setAlertMessage('Profile update successfully !');
@@ -80,7 +77,7 @@ function UserPage(){
                     <h1>Your Account Settings</h1>
 
                     <div className="image-settings">
-                    <img src={require(`../../../Images/users/${user.data.user.photo}`)} alt="profile" />
+                    <img src={userPhotoUrl} alt="profile" />
                     <Form.Group controlId="formChoosePhoto" className="mb-3">
                         <Form.Label>Choose new photo</Form.Label>
                         <Form.Control type="file" onChange={handleFileChange}/>
