@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 
 function UserPage(){
     const navigate = useNavigate();
-    const { user } = useAuth();
+    const { user , logout } = useAuth();
     const [name , setName] = useState(`${user.data.user.name}`);
     const [email , setEmail] = useState(`${user.data.user.email}`);
     const [ selectedFile , setSelectedFile ] = useState(`user-${user.data.user._id}-${Date.now()}.png`);
@@ -67,6 +67,42 @@ function UserPage(){
         }
     }
 
+    const [password , setPassword] = useState('');
+    const [newPassword , setNewPassword] = useState('');
+    const [confirmPassword , setConfirmPassword] = useState('');
+
+    const handleChangePassword = async () => {
+        try{
+            await axios.patch('http://localhost:8000/api/users/updateMyPassword' , {
+                passwordCurrent : password,
+                password : newPassword,
+                passwordConfirm : confirmPassword
+            });
+
+            setAlertVariant('success');
+            setAlertMessage('Password update successfully !');
+            setShowAlert(true);
+
+            setTimeout(() => {
+                setShowAlert(false);
+                logout();
+                navigate("/login-page");
+            });
+
+        }catch(err){
+            if(err.response.data.status === "fail")
+            {
+                setAlertVariant('danger');
+                setAlertMessage(`Password update failed ! ${err.response.data.message}`);
+                setShowAlert(true);
+            }
+
+            setTimeout(() => {
+                setShowAlert(false);
+            }, 2000);
+        }
+    }
+
     return(
        <div className="user-page">
            <UserOptions />
@@ -100,19 +136,19 @@ function UserPage(){
                     <h1>Password Change</h1>
 
                     <FloatingLabel controlId="floatingOldPassword" label="Password" className="mb-3">
-                        <Form.Control type="password" placeholder="Password"/>
+                        <Form.Control type="password" placeholder="Password" required onChange={(e) => setPassword(e.target.value)}/>
                     </FloatingLabel>
 
                     <FloatingLabel controlId="floatingNewPassword" label="New Password" className="mb-3">
-                        <Form.Control type="password" placeholder="Password"/>
+                        <Form.Control type="password" placeholder="Password" required onChange={(e) => setNewPassword(e.target.value)}/>
                     </FloatingLabel>
 
                     <FloatingLabel controlId="floatingConfirmPassword" label="Confirm Password" className="mb-3">
-                        <Form.Control type="password" placeholder="Password"/>
+                        <Form.Control type="password" placeholder="Password" required onChange={(e) => setConfirmPassword(e.target.value)}/>
                     </FloatingLabel>
 
 
-                    <Button padding={'10px 20px'}>Change password</Button>
+                    <Button padding={'10px 20px'} event={handleChangePassword}>Change password</Button>
                 </div>
                 
            </section>
