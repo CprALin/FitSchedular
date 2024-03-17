@@ -254,11 +254,21 @@ exports.resetPassword = catchAsync(async (req , res, next) => {
 exports.updatePassword = catchAsync(async (req , res , next) => {
     // get user from collection 
     const user = await User.findById(req.user.id).select('+password');
+    const isCorrect = await user.correctPassword(req.body.passwordCurrent , user.password);
+
+    if (req.body.password === req.body.passwordCurrent) {
+        return next(new AppError('New password must be different from the old one', 401));
+    }
 
     //check if POSTed current password is correct
-    if(!(user.correctPassword(req.body.passwordCurrent , user.password)))
+    if(!isCorrect)
     {
         return next(new AppError('Your current password is wrong' , 401));
+    }
+
+    if(req.body.password !== req.body.passwordConfirm)
+    {
+        return next(new AppError('The new password needs to be the same as the confirm password!', 401));
     }
 
     // if so , update password
