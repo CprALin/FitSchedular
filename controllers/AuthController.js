@@ -256,6 +256,11 @@ exports.updatePassword = catchAsync(async (req , res , next) => {
     const user = await User.findById(req.user.id).select('+password');
     const isCorrect = await user.correctPassword(req.body.passwordCurrent , user.password);
 
+    if(req.body.password === '' || req.body.passwordCurrent === '' || req.body.passwordConfirm === '')
+    {
+        return next(new AppError('Complete all fields .', 401));
+    }
+
     if (req.body.password === req.body.passwordCurrent) {
         return next(new AppError('New password must be different from the old one', 401));
     }
