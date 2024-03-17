@@ -103,7 +103,7 @@ function UserPage(){
                         <Form.Control type="password" placeholder="Password"/>
                     </FloatingLabel>
 
-                    <FloatingLabel controlId="floatingNewPassword" label="Password" className="mb-3">
+                    <FloatingLabel controlId="floatingNewPassword" label="New Password" className="mb-3">
                         <Form.Control type="password" placeholder="Password"/>
                     </FloatingLabel>
 

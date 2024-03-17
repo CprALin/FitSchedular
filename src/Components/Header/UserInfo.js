@@ -6,6 +6,7 @@ function UserInfo(){
     const navigate = useNavigate();
 
     let userPhotoUrl;
+    
     try {
         // Încercăm să încărcăm imaginea utilizatorului
         userPhotoUrl = require(`../../Images/users/${user.data.user.photo}`);
