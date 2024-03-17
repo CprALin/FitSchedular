@@ -90,6 +90,7 @@ function UserPage(){
             });
 
         }catch(err){
+         
             if(err.response.data.status === "fail")
             {
                 setAlertVariant('danger');
