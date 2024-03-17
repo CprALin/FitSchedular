@@ -33,7 +33,7 @@ exports.resizeUserPhoto = catchAsync(async (req , res , next) => {
         .resize(500,500, sharp.fit)
         .toFormat('png')
         .jpeg({quality : 90})
-        .toFile(`C:/Users/stfal/Desktop/fit-schedular-frontend/src/Images/users${req.file.filename}`);
+        .toFile(`C:/Users/stfal/Desktop/fit-schedular-frontend/src/Images/users/${req.file.filename}`);
 
     next();
 });
@@ -74,6 +74,7 @@ exports.updateMe = catchAsync(async (req, res, next) => {
     }
 
     const filteredBody = filterObj(req.body , 'name' , 'email');
+    if(req.file) filteredBody.photo = req.file.filename;
 
     const updateUser = await User.findByIdAndUpdate(req.user.id , filteredBody , { new : true , runValidators : true});
 
