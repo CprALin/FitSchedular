@@ -21,7 +21,8 @@ const trainerSchema = new mongoose.Schema({
     studies : {
         type : String,
         required : [true, 'A trainer must have some studies !']
-    }
+    },
+    trainerPhotos : [String]
 });
 
 //populate all documents
