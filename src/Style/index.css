@@ -12376,6 +12376,16 @@ body {
 .App .body .user-page .user-options .option.active {
   border-left: 2px solid #F05941;
 }
+.App .body .user-page .user-options .admin-options, .App .body .user-page .user-options .trainer-options {
+  margin-top: 150px;
+  border-top: 2px solid #F05941;
+  width: 100%;
+}
+.App .body .user-page .user-options .admin-options h4, .App .body .user-page .user-options .admin-options .h4, .App .body .user-page .user-options .trainer-options h4, .App .body .user-page .user-options .trainer-options .h4 {
+  display: flex;
+  justify-content: center;
+  border-bottom: 2px solid #F05941;
+}
 .App .body .user-page .user-profile-settings {
   display: flex;
   justify-content: center;

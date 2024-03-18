@@ -5,11 +5,15 @@ import { IoMdSettings } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { useNavigate , useLocation } from "react-router-dom";
 import { useState } from "react";
+import AdminOption from "./AdminOptions";
+import TrainerOptions from "./TrainerOptions";
+import { useAuth } from "../../../Utils/AuthContext";
 
 function UserOptions() {
     const navigate = useNavigate();
     const location = useLocation();
     const [isActive , setIsActive] = useState(location.pathname);
+    const { user } = useAuth();
 
     const handleHomePage = () => {
         navigate("/");
@@ -36,7 +40,15 @@ function UserOptions() {
                         <FaCreditCard />
                         <Link>Billing</Link>
                     </div>
+
+                    {user.data.user.role === "admin" ? <AdminOption /> : 
+                     user.data.user.role === "trainer" ? <TrainerOptions /> : 
+                     null    
+                    }
+                
+
             </section>
+
         </>
     );
 }
