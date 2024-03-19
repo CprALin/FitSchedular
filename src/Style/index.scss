@@ -31,7 +31,7 @@ body{
   #bootstrap-btn
   {
     color: red;
-    
+
      &:hover 
      {
         background: $fourColor;
@@ -474,6 +474,7 @@ body{
            .mb-3
            {
              width: 40rem;
+             
              input 
              {
                background-color: $thrColor;

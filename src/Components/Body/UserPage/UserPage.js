@@ -1,13 +1,14 @@
 import { useAuth } from "../../../Utils/AuthContext";
 import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
-import { useState } from "react";
+import { useState , useEffect } from "react";
 import Button from "../../ReuseComp/Button";
 import UserOptions from "./UserOptions";
 import axios from "axios";
 import CustomAlert from "../../../Utils/CustomAlert";
 import { useNavigate } from "react-router-dom";
 import ConfirmAlert from "../../../Utils/ConfirmAlert";
+import TrainerProfile from "./TrainerProfile";
 //import Cookies from "js-cookie";
 
 function UserPage(){
@@ -22,14 +23,18 @@ function UserPage(){
     const [showAlert , setShowAlert] = useState(false);
     const [showConfirmAlert , setShowConfirmAlert] = useState(false);
 
-    let userPhotoUrl;
-    try {
-        // Încercăm să încărcăm imaginea utilizatorului
-        userPhotoUrl = require(`../../../Images/users/${user.data.user.photo}`);
-    } catch (error) {
-        // Dacă apare o eroare, folosim imaginea implicită
-        userPhotoUrl = require('../../../Images/users/default.png');
-    }
+    const isTrainer = user.data.user.role === 'trainer';
+
+    const [userPhotoUrl , setUserPhotoUrl] = useState(null);
+
+    useEffect(() => {
+        const getUserPhoto = async () => {
+            const response = await axios.get(`http://localhost:8000/api/users/getUserPhoto/${user.data.user.photo}`);
+            setUserPhotoUrl(response.data);
+        }
+
+        getUserPhoto();
+    },[user,userPhotoUrl]);
 
     const handleFileChange = (event) => {
         setSelectedFile(event.target.files[0]);
@@ -114,6 +119,34 @@ function UserPage(){
         setShowConfirmAlert(false);
     }
 
+    const handleOnYesClick = async () => {
+        try{
+            await axios.delete('http://localhost:8000/api/users/deleteMe');
+            
+            setAlertVariant('success');
+            setAlertMessage('Account was deleted successfully !');
+            setShowAlert(true);
+
+
+            setTimeout(() => {
+                setShowAlert(false);
+                logout();
+                navigate("/login-page");
+            });
+        }catch(err){
+            if(err.response.data.status === "fail")
+            {
+                setAlertVariant('danger');
+                setAlertMessage(`Password update failed ! ${err.response.data.message}`);
+                setShowAlert(true);
+            }
+
+            setTimeout(() => {
+                setShowAlert(false);
+            }, 2000);
+        }    
+    }
+
     return(
        <div className="user-page">
            <UserOptions />
@@ -132,11 +165,11 @@ function UserPage(){
                     </div>
 
                     <FloatingLabel controlId="floatingInputName" label="Name" className="mb-3">
-                    <Form.Control type="text" value={name} placeholder="Name" onChange={(e) => setName(e.target.value)}/>
+                       <Form.Control type="text" value={name} placeholder="Name" onChange={(e) => setName(e.target.value)}/>
                     </FloatingLabel>
 
                     <FloatingLabel controlId="floatingInputEmail" label="Email Adress" className="mb-3">
-                    <Form.Control type="email" value={email} placeholder="name@example.com" onChange={(e) => setEmail(e.target.value)}/>
+                       <Form.Control type="email" value={email} placeholder="name@example.com" onChange={(e) => setEmail(e.target.value)}/>
                     </FloatingLabel>
 
 
@@ -162,6 +195,12 @@ function UserPage(){
                     <Button padding={'10px 20px'} event={handleChangePassword}>Change password</Button>
                 </div>
 
+                {isTrainer && (
+                    <div className="settings-container">
+                        <TrainerProfile user={user} setAlertMessage={setAlertMessage} setAlertVariant={setAlertVariant} setShowAlert={setShowAlert} navigate={navigate}/>
+                    </div>
+                )}
+
                 <div className="settings-container">
                     <p id="delete-option">Do you want to delete your account ? <span onClick={handleDeleteProfile}>Delete Account</span></p>
                 </div>
@@ -173,7 +212,7 @@ function UserPage(){
             )}
 
             {showConfirmAlert && (
-                <ConfirmAlert message={"Delete Account"} compMessage={"Are you sure?"} show={showConfirmAlert} onClickNo={handleOnNoClick}/>
+                <ConfirmAlert message={"Delete Account"} compMessage={"Are you sure?"} show={showConfirmAlert} onClickNo={handleOnNoClick} onClickYes={handleOnYesClick}/>
             )}
        </div>
     );

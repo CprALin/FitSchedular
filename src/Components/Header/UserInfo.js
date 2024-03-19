@@ -1,19 +1,21 @@
 import { useAuth } from "../../Utils/AuthContext";
 import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import axios from 'axios';
 
 function UserInfo(){
     const { user } = useAuth();
     const navigate = useNavigate();
+    const [userPhotoUrl , setUserPhotoUrl] = useState('');
 
-    let userPhotoUrl;
-    
-    try {
-        // Încercăm să încărcăm imaginea utilizatorului
-        userPhotoUrl = require(`../../Images/users/${user.data.user.photo}`);
-    } catch (error) {
-        // Dacă apare o eroare, folosim imaginea implicită
-        userPhotoUrl = require('../../Images/users/default.png');
-    }
+    useEffect(() => {
+        const getUserPhoto = async () => {
+            const response = await axios.get(`http://localhost:8000/api/users/getUserPhoto/${user.data.user.photo}`);
+            setUserPhotoUrl(response.data);
+        }
+
+        getUserPhoto();
+    },[user,userPhotoUrl]);
 
     const handleProfilePage = () => {
         navigate("/user-profile");
