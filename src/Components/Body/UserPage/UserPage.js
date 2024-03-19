@@ -7,6 +7,7 @@ import UserOptions from "./UserOptions";
 import axios from "axios";
 import CustomAlert from "../../../Utils/CustomAlert";
 import { useNavigate } from "react-router-dom";
+import ConfirmAlert from "../../../Utils/ConfirmAlert";
 //import Cookies from "js-cookie";
 
 function UserPage(){
@@ -19,6 +20,7 @@ function UserPage(){
     const [alertMessage , setAlertMessage] = useState('');
     const [alertVariant , setAlertVariant] = useState('');
     const [showAlert , setShowAlert] = useState(false);
+    const [showConfirmAlert , setShowConfirmAlert] = useState(false);
 
     let userPhotoUrl;
     try {
@@ -104,6 +106,14 @@ function UserPage(){
         }
     }
 
+    const handleDeleteProfile = () => {
+        setShowConfirmAlert(true);
+    } 
+
+    const handleOnNoClick = () => {
+        setShowConfirmAlert(false);
+    }
+
     return(
        <div className="user-page">
            <UserOptions />
@@ -151,11 +161,19 @@ function UserPage(){
 
                     <Button padding={'10px 20px'} event={handleChangePassword}>Change password</Button>
                 </div>
+
+                <div className="settings-container">
+                    <p id="delete-option">Do you want to delete your account ? <span onClick={handleDeleteProfile}>Delete Account</span></p>
+                </div>
                 
            </section>
 
            {showAlert && (
-                    <CustomAlert variant={alertVariant} message={alertMessage}/>
+                <CustomAlert variant={alertVariant} message={alertMessage}/>
+            )}
+
+            {showConfirmAlert && (
+                <ConfirmAlert message={"Delete Account"} compMessage={"Are you sure?"} show={showConfirmAlert} onClickNo={handleOnNoClick}/>
             )}
        </div>
     );

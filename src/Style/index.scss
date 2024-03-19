@@ -28,6 +28,16 @@ body{
 }
 
 .App{
+  #bootstrap-btn
+  {
+    color: red;
+    
+     &:hover 
+     {
+        background: $fourColor;
+        color: $textColor;
+     }
+  }
   
   .header 
   {
@@ -581,6 +591,20 @@ body{
              align-items: center;
              margin-top: 110px;
              margin-bottom: 50px;
+
+             #delete-option
+             {
+               span
+               {
+                  cursor: pointer;
+                  color: $fourColor;
+
+                  &:hover
+                  {
+                     text-decoration: underline;
+                  }
+               }
+             }
            }
            
            h1 

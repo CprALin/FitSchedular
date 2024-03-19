@@ -11978,6 +11978,13 @@ body {
   cursor: default;
 }
 
+.App #bootstrap-btn {
+  color: red;
+}
+.App #bootstrap-btn:hover {
+  background: #F05941;
+  color: #FFF;
+}
 .App .header {
   display: flex;
   border-bottom: 2px solid #BE3144;
@@ -12399,6 +12406,13 @@ body {
   align-items: center;
   margin-top: 110px;
   margin-bottom: 50px;
+}
+.App .body .user-page .user-profile-settings .settings-container #delete-option span {
+  cursor: pointer;
+  color: #F05941;
+}
+.App .body .user-page .user-profile-settings .settings-container #delete-option span:hover {
+  text-decoration: underline;
 }
 .App .body .user-page .user-profile-settings h1, .App .body .user-page .user-profile-settings .h1 {
   margin: 40px 20px;

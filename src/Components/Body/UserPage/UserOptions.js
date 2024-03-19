@@ -30,7 +30,7 @@ function UserOptions() {
                     </div>
                     <div className={`option ${isActive === "/user-appointments" ? 'active' : ''}`}>
                         <LuCalendarSearch />
-                        <Link to="/user-appointments" onClick={() => setIsActive("/user-appointments")}>Appointments</Link>
+                        <Link to="/user-appointments" onClick={() => setIsActive("/user-appointments")}>My Appointments</Link>
                     </div>
                     <div className="option">
                         <FaRegStar />
