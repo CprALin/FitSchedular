@@ -26,14 +26,14 @@ app.use(helmet());
 
 //Limit request for same API
 // 100 req / h
-const limiter = rateLimit({
+/* const limiter = rateLimit({
     max : 100,
     windowMs : 60 * 60 * 1000,
     message : 'Too many requests from this IP , please try again in an hour!' 
-});
+}); */
 
-// all routes starts with /api
-app.use('/api' ,limiter);
+// all routes starts with /api ,limiter
+/* app.use('/api'); */
 
 //Reading data from the body into req.body
 app.use(express.json({ limit : '10kb' }));

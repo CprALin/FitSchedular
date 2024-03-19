@@ -33,7 +33,7 @@ exports.resizeUserPhoto = catchAsync(async (req , res , next) => {
         .resize(500,500, sharp.fit)
         .toFormat('png')
         .jpeg({quality : 90})
-        .toFile(`C:/Users/stfal/Desktop/fit-schedular-frontend/src/Images/users/${req.file.filename}`);
+        .toFile(`img/users/${req.file.filename}`);
 
     next();
 });

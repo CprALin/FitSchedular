@@ -12,6 +12,8 @@ router.route('/:id').get(TrainerRouter.getTrainer)
 
 router.patch('/updateTrainer', authController.restrictTo('trainer') , TrainerRouter.updateCurrentTrainer);
 
+router.get('/currentTrainer/:id', authController.restrictTo('trainer'), TrainerRouter.getCurrentTrainer);
+
 router.use(authController.restrictTo('admin'));
 
 router.post('/addTrainer' , TrainerRouter.createTrainer);

@@ -62,10 +62,12 @@ exports.updateCurrentTrainer = catchAsync(async (req , res , next) => {
          studies : req.body.studies
       } , { runValidators : true });
 
+      const newTrainer = await Trainer.findOne({ user : req.user._id});
+
       res.status(200).json({
         status : 'success',
         data : {
-           trainer
+           newTrainer
         }
       });
 
@@ -74,6 +76,22 @@ exports.updateCurrentTrainer = catchAsync(async (req , res , next) => {
      }
 
 });
+
+exports.getCurrentTrainer = catchAsync(async (req , res , next) => {
+      try{
+         const trainer = await Trainer.findOne({ user : req.user._id });
+
+         res.status(200).json({
+            status : 'success',
+            data : {
+               trainer
+            }
+         });
+
+      }catch(err){
+         return next(new AppError(`${err}` , 400));
+      }
+})
 
 
 exports.getTrainer = factory.getOne(Trainer);
