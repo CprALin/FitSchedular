@@ -1,21 +1,27 @@
+import { useEffect, useState } from "react";
 import { useAuth } from "../../Utils/AuthContext";
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from "react";
 import axios from 'axios';
+import { Buffer } from "buffer";
 
 function UserInfo(){
     const { user } = useAuth();
     const navigate = useNavigate();
-    const [userPhotoUrl , setUserPhotoUrl] = useState('');
+    const [userPhoto , setUserPhoto] = useState(null);
 
     useEffect(() => {
-        const getUserPhoto = async () => {
-            const response = await axios.get(`http://localhost:8000/api/users/getUserPhoto/${user.data.user.photo}`);
-            setUserPhotoUrl(response.data);
+        const fetchUserPhoto = async () => {
+            try{
+              const response = await axios.get(`http://localhost:8000/api/users/getUserPhoto/${user.data.user.photo}`, { responseType: 'arraybuffer' });
+              const base64Image = Buffer.from(response.data, 'binary').toString('base64');
+              setUserPhoto(`data:image/png;base64,${base64Image}`);
+            }catch{
+              setUserPhoto(require('../../Images/users/default.png'));
+            }
         }
 
-        getUserPhoto();
-    },[user,userPhotoUrl]);
+        fetchUserPhoto();
+    }, [user]);
 
     const handleProfilePage = () => {
         navigate("/user-profile");
@@ -23,7 +29,7 @@ function UserInfo(){
 
     return(
         <div className="nav-user-info" onClick={handleProfilePage}>
-            <img src={userPhotoUrl} alt='profile' style={{width : '30px' , height : '30px'}}/>
+            <img src={userPhoto} alt='profile' style={{width : '30px' , height : '30px'}}/>
             <p>{user.data.user.name}</p>
         </div>
     );

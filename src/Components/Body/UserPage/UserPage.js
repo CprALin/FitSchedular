@@ -9,6 +9,7 @@ import CustomAlert from "../../../Utils/CustomAlert";
 import { useNavigate } from "react-router-dom";
 import ConfirmAlert from "../../../Utils/ConfirmAlert";
 import TrainerProfile from "./TrainerProfile";
+import { Buffer } from "buffer";
 //import Cookies from "js-cookie";
 
 function UserPage(){
@@ -25,16 +26,21 @@ function UserPage(){
 
     const isTrainer = user.data.user.role === 'trainer';
 
-    const [userPhotoUrl , setUserPhotoUrl] = useState(null);
+    const [userPhoto , setUserPhoto] = useState(null);
 
     useEffect(() => {
-        const getUserPhoto = async () => {
-            const response = await axios.get(`http://localhost:8000/api/users/getUserPhoto/${user.data.user.photo}`);
-            setUserPhotoUrl(response.data);
+        const fetchUserPhoto = async () => {
+            try{
+              const response = await axios.get(`http://localhost:8000/api/users/getUserPhoto/${user.data.user.photo}`, { responseType: 'arraybuffer' });
+              const base64Image = Buffer.from(response.data, 'binary').toString('base64');
+              setUserPhoto(`data:image/png;base64,${base64Image}`);
+            }catch(err){
+              setUserPhoto(require('../../../Images/users/default.png'));
+            }
         }
 
-        getUserPhoto();
-    },[user,userPhotoUrl]);
+        fetchUserPhoto();
+    }, [user]);
 
     const handleFileChange = (event) => {
         setSelectedFile(event.target.files[0]);
@@ -157,7 +163,7 @@ function UserPage(){
                     <h1>Your Account Settings</h1>
 
                     <div className="image-settings">
-                    <img src={userPhotoUrl} alt="profile" />
+                    <img src={userPhoto} alt="profile" />
                     <Form.Group controlId="formChoosePhoto" className="mb-3">
                         <Form.Label>Choose new photo</Form.Label>
                         <Form.Control type="file" onChange={handleFileChange}/>
