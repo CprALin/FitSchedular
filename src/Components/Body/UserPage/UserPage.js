@@ -13,6 +13,8 @@ import { Buffer } from "buffer";
 //import Cookies from "js-cookie";
 
 function UserPage(){
+    const [loading , setIsLoading] = useState(false);
+
     const navigate = useNavigate();
     const { user , logout } = useAuth();
     const [name , setName] = useState(`${user.data.user.name}`);
@@ -40,7 +42,7 @@ function UserPage(){
         }
 
         fetchUserPhoto();
-    }, [user]);
+    }, [user.data.user.photo]);
 
     const handleFileChange = (event) => {
         setSelectedFile(event.target.files[0]);
@@ -55,6 +57,7 @@ function UserPage(){
         formData.append('photo' , selectedFile);
 
         try{
+           setIsLoading(true); 
            const response = await axios.patch(`http://localhost:8000/api/users/updateMe` , formData);
 
            user.data.user = response.data.data.user;           
@@ -65,8 +68,7 @@ function UserPage(){
 
            setTimeout(() => {
                 setShowAlert(false);
-                setEmail('');
-                setName('');
+                setIsLoading(false);
                 navigate("/");
            }, 1000);
         }catch(err){
@@ -76,6 +78,7 @@ function UserPage(){
 
             setTimeout(() => {
                 setShowAlert(false);
+                setIsLoading(false);
             }, 1500);
         }
     }
@@ -86,6 +89,7 @@ function UserPage(){
 
     const handleChangePassword = async () => {
         try{
+            setIsLoading(true);
             await axios.patch('http://localhost:8000/api/users/updateMyPassword' , {
                 passwordCurrent : password,
                 password : newPassword,
@@ -99,6 +103,7 @@ function UserPage(){
             setTimeout(() => {
                 setShowAlert(false);
                 logout();
+                setIsLoading(false);
                 navigate("/login-page");
             });
 
@@ -113,6 +118,7 @@ function UserPage(){
 
             setTimeout(() => {
                 setShowAlert(false);
+                setIsLoading(false);
             }, 2000);
         }
     }
@@ -179,7 +185,7 @@ function UserPage(){
                     </FloatingLabel>
 
 
-                    <Button padding={'10px 20px'} event={handleUpdateProfile}>Save settings</Button>
+                    {loading ?  <Button padding={'10px 20px'}>Loading ...</Button> : <Button padding={'10px 20px'} event={handleUpdateProfile}>Save settings</Button>}
                 </div>
 
                 <div className="settings-container">
@@ -198,12 +204,12 @@ function UserPage(){
                     </FloatingLabel>
 
 
-                    <Button padding={'10px 20px'} event={handleChangePassword}>Change password</Button>
+                    {loading ? <Button padding={'10px 20px'}>Loading ...</Button> : <Button padding={'10px 20px'} event={handleChangePassword}>Change password</Button>}
                 </div>
 
                 {isTrainer && (
                     <div className="settings-container">
-                        <TrainerProfile user={user} setAlertMessage={setAlertMessage} setAlertVariant={setAlertVariant} setShowAlert={setShowAlert} navigate={navigate}/>
+                        <TrainerProfile user={user} setAlertMessage={setAlertMessage} setAlertVariant={setAlertVariant} setShowAlert={setShowAlert} navigate={navigate} loading={loading} setIsLoading={setIsLoading}/>
                     </div>
                 )}
 

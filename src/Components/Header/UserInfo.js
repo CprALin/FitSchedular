@@ -21,7 +21,7 @@ function UserInfo(){
         }
 
         fetchUserPhoto();
-    }, [user]);
+    }, [user.data.user.photo]);
 
     const handleProfilePage = () => {
         navigate("/user-profile");

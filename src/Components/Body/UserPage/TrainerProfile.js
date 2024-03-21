@@ -4,11 +4,20 @@ import axios from 'axios';
 import {useState , useEffect } from "react";
 import Button from '../../ReuseComp/Button';
 
-function TrainerProfile({ user , setAlertVariant , setAlertMessage , setShowAlert , navigate}){
+function TrainerProfile({ user , setAlertVariant , setAlertMessage , setShowAlert , navigate , loading , setIsLoading}){
+
     const [ className , setClassName ] = useState('');
     const [ classDescription , setClassDescription ] = useState('');
     const [ occupation , setOccupation ] = useState('');
     const [ studies , setStudies ] = useState(''); 
+    const [ selectedFiles , setSelectedFiles ] = useState([]);
+
+    const handleFileChange = (event) => {
+        const files = event.target.files;
+        const newFiles = Array.from(files);
+        setSelectedFiles(newFiles);
+    };    
+    
 
     useEffect(() => {
         async function fetchData() { 
@@ -24,15 +33,23 @@ function TrainerProfile({ user , setAlertVariant , setAlertMessage , setShowAler
         fetchData();
     }, [user]);
 
-    const handleUpdateTrainer = async () => {
+    const handleUpdateTrainer = async (event) => {
+        event.preventDefault();
+
+        const formData = new FormData();
+        formData.append('className' , className);
+        formData.append('classDescription' , classDescription);
+        formData.append('occupation' , occupation);
+        formData.append('studies' , studies);
+
+        selectedFiles.forEach((file) => {
+            formData.append(`trainerPhotos`, file);
+        });
+
         try 
         {
-            await axios.patch('http://localhost:8000/api/trainers/updateTrainer' , {
-                className : className,
-                classDescription : classDescription,
-                occupation : occupation,
-                studies : studies
-            });
+            setIsLoading(true);
+            await axios.patch('http://localhost:8000/api/trainers/updateTrainer' , formData);
 
             setAlertVariant('success');
             setAlertMessage('Profile update successfully !');
@@ -40,23 +57,27 @@ function TrainerProfile({ user , setAlertVariant , setAlertMessage , setShowAler
 
             setTimeout(() => {
                 setShowAlert(false);
+                setIsLoading(false);
                 navigate("/");
             }, 1000);
         }catch(err){
             if(err.response.data.status === "fail")
             {
                 setAlertVariant('danger');
-                setAlertMessage(`Password update failed ! ${err.response.data.message}`);
+                setAlertMessage(`Profile update failed ! ${err.response.data.message}`);
                 setShowAlert(true);
             }
 
             setTimeout(() => {
                 setShowAlert(false);
+                setIsLoading(false);
             }, 2000);
         }
 
 
     }
+
+    const imageCount = selectedFiles.length;
 
     return(
         <div className="settings-container">
@@ -79,12 +100,12 @@ function TrainerProfile({ user , setAlertVariant , setAlertMessage , setShowAler
                 <Form.Control type="text" value={studies} placeholder="Trainer Studies" onChange={(e) => setStudies(e.target.value)}/>
             </FloatingLabel>
           
-            <Form.Group controlId="formChoosePhoto" className="mb-3">
-                <Form.Label>Choose new photos</Form.Label>
-                <Form.Control type="file" />
+            <Form.Group controlId="formChooseTrainerPhotos" className="mb-3">
+                <Form.Label>Choose new photos ({imageCount} images added)</Form.Label>
+                <Form.Control type="file" multiple onChange={handleFileChange}/>
             </Form.Group>
 
-            <Button padding={'10px 20px'} event={handleUpdateTrainer}>Save settings</Button>
+            {loading ? <Button padding={'10px 20px'}>Loading ...</Button> : <Button padding={'10px 20px'} event={handleUpdateTrainer}>Save settings</Button>}
         </div>
     );
 }
