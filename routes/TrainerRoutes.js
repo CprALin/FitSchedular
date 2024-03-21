@@ -10,11 +10,11 @@ router.use(authController.protect);
 router.get('/allTrainers' , TrainerRouter.getAllTrainers);
 router.route('/:id').get(TrainerRouter.getTrainer)
 
-router.patch('/updateTrainer', authController.restrictTo('trainer') , TrainerRouter.updateCurrentTrainer);
+router.patch('/updateTrainer', authController.restrictTo('trainer') , TrainerRouter.uploadTrainerImages , TrainerRouter.resizeTrainerImages , TrainerRouter.updateCurrentTrainer);
 
 router.get('/currentTrainer/:id', authController.restrictTo('trainer'), TrainerRouter.getCurrentTrainer);
 
-router.use(authController.restrictTo('admin'));
+router.use(authController.restrictTo('admin')); 
 
 router.post('/addTrainer' , TrainerRouter.createTrainer);
 

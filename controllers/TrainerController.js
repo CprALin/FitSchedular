@@ -3,6 +3,60 @@ const User = require('../models/UserModel');
 const factory = require('./HandlerFactory');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
+const multer = require('multer');
+const sharp = require('sharp');
+
+const multerStorage = multer.memoryStorage();
+
+const multerFilter = (req , file , cb) => {
+    if(file.mimetype.startsWith('image')){
+        cb(null,true)
+    }else{
+        cb(new AppError('Not an image! Please upload only images.', 400), false);
+    }
+};
+
+//upload photo
+const upload = multer({
+    storage : multerStorage,
+    fileFilter : multerFilter
+});
+
+exports.uploadTrainerImages = upload.fields([{ name : 'trainerPhotos' , maxCount : 3}]);    
+
+exports.resizeTrainerImages = catchAsync(async (req , res , next) => {
+    if(!req.files.trainerPhotos) return next();
+
+    req.body.trainerPhotos = [];
+    await Promise.all(
+       req.files.trainerPhotos.map(async (file , i) => {
+            const fileName = `trainer-${req.user.id}-${Date.now()}-${i + 1}.png`;
+
+            await sharp(file.buffer)
+               .resize(2000,1333, sharp.fit)
+               .toFormat('png')
+               .png({quality : 90})
+               .toFile(`img/trainers/${fileName}`);
+
+            req.body.trainerPhotos.push(fileName);
+       })
+    );
+
+    next();
+});
+
+const filterObj = (obj , ...allowedFields) => {
+   const newObj = {};
+
+   Object.keys(obj).forEach(el => {
+       if(allowedFields.includes(el))
+       {
+           newObj[el] = obj[el];
+       }
+   });
+
+   return newObj;
+}
 
 exports.createTrainer = catchAsync(async (req , res , next) => {
 
@@ -53,21 +107,22 @@ exports.updateCurrentTrainer = catchAsync(async (req , res , next) => {
 
      try
      {
+
       const trainer = await Trainer.findOne({ user : req.user._id});
 
-      await Trainer.findByIdAndUpdate( trainer._id , {
-         className : req.body.className,
-         classDescription : req.body.classDescription,
-         occupation : req.body.occupation,
-         studies : req.body.studies
-      } , { runValidators : true });
+      const filteredBody = filterObj(req.body , 'className' , 'classDescription' , 'occupation' , 'studies');
+      
+      if (req.files.trainerPhotos) {     
+         const imagePaths = req.files.trainerPhotos.map((file,i) => `trainer-${req.user.id}-${Date.now()}-${i + 1}.png`);
+         filteredBody.trainerPhotos = imagePaths;
+      }
 
-      const newTrainer = await Trainer.findOne({ user : req.user._id});
+      const updateTrainer = await Trainer.findByIdAndUpdate( trainer._id , filteredBody , { new : true , runValidators : true });
 
       res.status(200).json({
         status : 'success',
         data : {
-           newTrainer
+           updateTrainer
         }
       });
 
