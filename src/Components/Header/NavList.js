@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function NavList(){
+function NavList({active}){
 
     const handleLinkClick = (id) => {
         const element = document.getElementById(id);
@@ -10,7 +10,7 @@ function NavList(){
       };
 
     return(
-        <div className="nav-list">
+        <div className={`nav-list ${active? 'active' : ''}`}>
                 <ul>
                     <li><Link to="/" onClick={() => handleLinkClick("home-page")}>Home</Link></li>
                     <li><Link to="/" onClick={() => handleLinkClick("about-us")}>About</Link></li>

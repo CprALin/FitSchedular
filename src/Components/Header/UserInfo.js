@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Buffer } from "buffer";
 
-function UserInfo(){
+function UserInfo({active}){
     const { user } = useAuth();
     const navigate = useNavigate();
     const [userPhoto , setUserPhoto] = useState(null);
@@ -28,7 +28,7 @@ function UserInfo(){
     }
 
     return(
-        <div className="nav-user-info" onClick={handleProfilePage}>
+        <div className={`nav-user-info ${active ? 'active' : ''}`} onClick={handleProfilePage}>
             <img src={userPhoto} alt='profile' style={{width : '30px' , height : '30px'}}/>
             <p>{user.data.user.name}</p>
         </div>

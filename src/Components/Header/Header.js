@@ -24,7 +24,7 @@ function Header(){
     }, [prevScrollPos]);
 
     return(
-        <header className="header" style={{ display : isOnUserPage ? 'none' : 'flex' , transform: isNavBarVisible ? 'translateY(0)' : 'translateY(-100%)', transition: 'transform 0.3s ease' }}>
+        <header className="header" style={{ display : isOnUserPage ? 'none' : 'flex' , transform: isNavBarVisible ? 'translateY(0)' : 'translateY(-500%)', transition: 'transform 0.3s ease' }}>
             <NavBar />
         </header>
     );

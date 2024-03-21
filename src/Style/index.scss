@@ -87,21 +87,8 @@ body{
                 }
               }
 
-              @media(max-width : 768px)
-              {
-                 margin: 4px;
-              }
             }
 
-            @media(max-width : 768px)
-            {
-              margin: 15px;
-            }
-         }
-
-         @media(max-width : 768px)
-         {
-           flex-direction: column;
          }
 
          .nav-user-div
@@ -129,6 +116,127 @@ body{
                 border-radius: 20px;
                 border: 2px solid $fourColor;
               }
+
+              @media(max-width : 1334px) 
+              {
+                 right: 15%;  
+              }
+              @media(min-width : 2000px)
+              {
+                right: 7%;
+              }
+            }
+         }
+
+         #bars , #active-bars
+         {
+           display: none;
+         }
+
+         @media(max-width : 1024px)
+         {
+            .nav-user-div
+            {
+              display: none;
+
+              &.active
+              {
+                display: flex;
+                position: absolute;
+                justify-content: center;
+                background-color: rgba($color: $secColor, $alpha: 0.7);
+                left: 0;
+                right: 0;
+                top: 113.5px;
+                padding: 10px;
+                border-bottom: 1px solid $fourColor;
+              }
+
+              #logout-btn.active
+              {
+                display: flex;
+                position: absolute;
+                right: -20px; 
+              }
+
+              .nav-user-info.active
+              {
+                left: 10px;
+                border: 0;
+              }
+            }
+
+            .nav-list
+            {
+              display: none;
+
+              &.active
+              {
+                display: flex;
+                position: absolute;
+                justify-content: center;
+                align-items: center;
+                padding: 10px; 
+                background-color: rgba($color: $secColor, $alpha: 0.7);
+                top: 68.3px;
+                left: 0;
+                right: 0;
+
+                ul 
+                {
+                  border-bottom: 2px solid $fourColor;
+                }
+
+                li 
+                {
+                  margin: 5px;
+                }
+                
+              }
+            }
+
+            #login-btn
+            {
+              display: none;
+
+              &.active
+              {
+                 display: flex;
+                 position: absolute;
+                 background-color: rgba($color: $secColor, $alpha: 0.7);
+                 justify-content: center;
+                 top: 113.5px;
+                 left: 0;
+                 right: 0; 
+                 border-bottom: 1px solid $fourColor;
+              }
+            }
+
+            #bars
+            {
+              display: flex;
+              cursor: pointer;
+              justify-content: center;
+              align-items: center;
+              font-size: 30px;
+              position: absolute;
+              right: 20px;
+              
+              &.active
+              {
+                display: none;
+              }
+              
+            }
+
+            #active-bars.active
+            {
+              display: flex;
+              cursor: pointer;
+              justify-content: center;
+              align-items: center;
+              position: absolute;
+              right: 20px;
             }
          }
     

@@ -12019,21 +12019,6 @@ body {
 .App .header .nav-bar .nav-list li a:hover {
   text-shadow: 0 0 10px #FFF, 0 0 20px #FFF, 0 0 40px #FFF;
 }
-@media (max-width: 768px) {
-  .App .header .nav-bar .nav-list li {
-    margin: 4px;
-  }
-}
-@media (max-width: 768px) {
-  .App .header .nav-bar .nav-list {
-    margin: 15px;
-  }
-}
-@media (max-width: 768px) {
-  .App .header .nav-bar {
-    flex-direction: column;
-  }
-}
 .App .header .nav-bar .nav-user-div {
   display: flex;
   align-items: center;
@@ -12053,6 +12038,97 @@ body {
 .App .header .nav-bar .nav-user-div .nav-user-info img {
   border-radius: 20px;
   border: 2px solid #F05941;
+}
+@media (max-width: 1334px) {
+  .App .header .nav-bar .nav-user-div .nav-user-info {
+    right: 15%;
+  }
+}
+@media (min-width: 2000px) {
+  .App .header .nav-bar .nav-user-div .nav-user-info {
+    right: 7%;
+  }
+}
+.App .header .nav-bar #bars, .App .header .nav-bar #active-bars {
+  display: none;
+}
+@media (max-width: 1024px) {
+  .App .header .nav-bar .nav-user-div {
+    display: none;
+  }
+  .App .header .nav-bar .nav-user-div.active {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    background-color: rgba(135, 35, 65, 0.7);
+    left: 0;
+    right: 0;
+    top: 113.5px;
+    padding: 10px;
+    border-bottom: 1px solid #F05941;
+  }
+  .App .header .nav-bar .nav-user-div #logout-btn.active {
+    display: flex;
+    position: absolute;
+    right: -20px;
+  }
+  .App .header .nav-bar .nav-user-div .nav-user-info.active {
+    left: 10px;
+    border: 0;
+  }
+  .App .header .nav-bar .nav-list {
+    display: none;
+  }
+  .App .header .nav-bar .nav-list.active {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background-color: rgba(135, 35, 65, 0.7);
+    top: 68.3px;
+    left: 0;
+    right: 0;
+  }
+  .App .header .nav-bar .nav-list.active ul {
+    border-bottom: 2px solid #F05941;
+  }
+  .App .header .nav-bar .nav-list.active li {
+    margin: 5px;
+  }
+  .App .header .nav-bar #login-btn {
+    display: none;
+  }
+  .App .header .nav-bar #login-btn.active {
+    display: flex;
+    position: absolute;
+    background-color: rgba(135, 35, 65, 0.7);
+    justify-content: center;
+    top: 113.5px;
+    left: 0;
+    right: 0;
+    border-bottom: 1px solid #F05941;
+  }
+  .App .header .nav-bar #bars {
+    display: flex;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    position: absolute;
+    right: 20px;
+  }
+  .App .header .nav-bar #bars.active {
+    display: none;
+  }
+  .App .header .nav-bar #active-bars.active {
+    display: flex;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 20px;
+  }
 }
 @media (max-width: 426px) {
   .App .header {
