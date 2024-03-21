@@ -683,6 +683,12 @@ body{
                border-bottom: 2px solid $fourColor; 
              }
           }
+
+          @media(max-width : 1440px)
+          {
+             position: absolute;
+             height: 100%;
+          }
         }
 
         .user-profile-settings

@@ -12469,6 +12469,12 @@ body {
   justify-content: center;
   border-bottom: 2px solid #F05941;
 }
+@media (max-width: 1440px) {
+  .App .body .user-page .user-options {
+    position: absolute;
+    height: 100%;
+  }
+}
 .App .body .user-page .user-profile-settings {
   display: flex;
   justify-content: center;
