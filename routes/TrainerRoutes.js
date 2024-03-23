@@ -5,10 +5,10 @@ const authController = require('../controllers/AuthController');
 //ROUTES
 const router = express.Router();
 
-router.use(authController.protect);
-
 router.get('/allTrainers' , TrainerRouter.getAllTrainers);
-router.route('/:id').get(TrainerRouter.getTrainer)
+router.route('/:id').get(TrainerRouter.getTrainer);
+
+router.use(authController.protect);
 
 router.patch('/updateTrainer', authController.restrictTo('trainer') , TrainerRouter.uploadTrainerImages , TrainerRouter.resizeTrainerImages , TrainerRouter.updateCurrentTrainer);
 
