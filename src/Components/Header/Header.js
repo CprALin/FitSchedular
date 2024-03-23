@@ -9,7 +9,9 @@ function Header(){
 
     const isOnUserPage = location.pathname === "/user-profile" || 
                          location.pathname === "/user-appointments" ||
-                         location.pathname === "/add-trainer";
+                         location.pathname === "/add-trainer" ||
+                         location.pathname === "/classes-page";
+
   
     useEffect(() => {
       const handleScroll = () => {

@@ -2,8 +2,15 @@ import Button from "../../ReuseComp/Button";
 import image1 from "../../../Images/crossfit-photo.jpg";
 import image2 from "../../../Images/fit-photo.jpg";
 import image3 from "../../../Images/hit-photo.jpg";
+import { useNavigate } from "react-router-dom";
 
 function ClassDiscover(){
+    const navigate = useNavigate();
+
+    const handleClassesPage = () => {
+        navigate('/classes-page');
+    }
+
     return (
         <div className="class-discover">
             <h1>Discover our classes</h1>
@@ -26,7 +33,7 @@ function ClassDiscover(){
             </div>
             
             <div className="discover-btn">
-               <Button>View All</Button>
+               <Button event={handleClassesPage}>View All</Button>
             </div>
         </div>
     );

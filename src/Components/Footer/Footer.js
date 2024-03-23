@@ -9,7 +9,8 @@ function Footer(){
                          location.pathname === "/login-page" || 
                          location.pathname === "/register-page" || 
                          location.pathname === "/user-appointments" ||
-                         location.pathname === "/add-trainer";
+                         location.pathname === "/add-trainer" || 
+                         location.pathname === "/classes-page";
 
     return(
         <footer className="footer" id="footer" style={{ display : isOnUserPage ? 'none' : 'flex'}}>
