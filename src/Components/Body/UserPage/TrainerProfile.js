@@ -101,7 +101,7 @@ function TrainerProfile({ user , setAlertVariant , setAlertMessage , setShowAler
             </FloatingLabel>
           
             <Form.Group controlId="formChooseTrainerPhotos" className="mb-3">
-                <Form.Label>Choose new photos ({imageCount} images added)</Form.Label>
+                <Form.Label id='label'>Choose new photos | {imageCount} images added </Form.Label>
                 <Form.Control type="file" multiple onChange={handleFileChange}/>
             </Form.Group>
 

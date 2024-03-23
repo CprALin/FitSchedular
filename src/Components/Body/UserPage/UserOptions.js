@@ -12,6 +12,7 @@ import { useAuth } from "../../../Utils/AuthContext";
 function UserOptions() {
     const navigate = useNavigate();
     const location = useLocation();
+    const [ showOptions , setShowOptions] = useState(false);
     const [isActive , setIsActive] = useState(location.pathname);
     const { user } = useAuth();
 
@@ -22,8 +23,10 @@ function UserOptions() {
     return(
         <>
             <h1 id="close" onClick={handleHomePage}>x</h1>
+            <h1 id="open-arrow" className={showOptions ? '' : 'active'} onClick={() => setShowOptions(true)}>{`>`}</h1>
            
-            <section className="user-options">
+            <section className={`user-options ${showOptions ? 'active' : ''}`}>
+                    <h1 id="close-arrow" className={showOptions ? 'active' : ''} onClick={() => setShowOptions(false)}>{`<`}</h1>    
                     <div className={`option ${isActive === "/user-profile" ? 'active' : ''}`}>
                         <IoMdSettings />
                         <Link to="/user-profile" onClick={() => setIsActive("/user-profile")}>Settings</Link>

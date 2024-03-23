@@ -12402,11 +12402,6 @@ body {
 }
 @media (max-width: 837px) {
   .App .body .login-page .login-form .mb-3 {
-    width: 25rem;
-  }
-}
-@media (max-width: 837px) {
-  .App .body .login-page .login-form .mb-3 {
     width: 15rem;
   }
 }
@@ -12418,7 +12413,6 @@ body {
 }
 .App .body .user-page {
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
   min-height: 100vh;
   background-color: #22092C;
@@ -12459,6 +12453,12 @@ body {
 .App .body .user-page .user-options .option.active {
   border-left: 2px solid #F05941;
 }
+@media (max-width: 1440px) {
+  .App .body .user-page .user-options .option {
+    justify-content: center;
+    align-items: center;
+  }
+}
 .App .body .user-page .user-options .admin-options, .App .body .user-page .user-options .trainer-options {
   margin-top: 150px;
   border-top: 2px solid #F05941;
@@ -12470,10 +12470,46 @@ body {
   border-bottom: 2px solid #F05941;
 }
 @media (max-width: 1440px) {
-  .App .body .user-page .user-options {
-    position: absolute;
-    height: 100%;
+  .App .body .user-page .user-options .admin-options, .App .body .user-page .user-options .trainer-options {
+    width: auto;
   }
+}
+@media (max-width: 1440px) {
+  .App .body .user-page .user-options {
+    display: flex;
+    align-items: center;
+    background-color: #872341;
+    z-index: 9999;
+    position: absolute;
+    width: 100%;
+    height: 500%;
+    transform: translateX(-100%);
+    transition: transform 0.4s ease;
+  }
+  .App .body .user-page .user-options.active {
+    transform: translateX(0);
+    transition: transform 0.4s ease;
+  }
+}
+.App .body .user-page #close-arrow, .App .body .user-page #open-arrow {
+  display: none;
+}
+@media (max-width: 1440px) {
+  .App .body .user-page #close-arrow, .App .body .user-page #open-arrow {
+    display: flex;
+  }
+}
+.App .body .user-page #open-arrow.active {
+  cursor: pointer;
+  position: absolute;
+  left: 30px;
+  top: 10px;
+}
+.App .body .user-page #close-arrow.active {
+  cursor: pointer;
+  position: absolute;
+  right: 30px;
+  top: 10px;
 }
 .App .body .user-page .user-profile-settings {
   display: flex;
@@ -12496,6 +12532,15 @@ body {
 .App .body .user-page .user-profile-settings .settings-container #delete-option span:hover {
   text-decoration: underline;
 }
+@media (max-width: 1440px) {
+  .App .body .user-page .user-profile-settings .settings-container #label {
+    display: flex;
+    text-align: center;
+  }
+  .App .body .user-page .user-profile-settings .settings-container #delete-option {
+    font-size: 12px;
+  }
+}
 .App .body .user-page .user-profile-settings h1, .App .body .user-page .user-profile-settings .h1 {
   margin: 40px 20px;
 }
@@ -12515,6 +12560,24 @@ body {
   border-radius: 20px;
   border: 2px solid #F05941;
 }
+@media (max-width: 1440px) {
+  .App .body .user-page .user-profile-settings .image-settings {
+    flex-direction: column;
+  }
+  .App .body .user-page .user-profile-settings .image-settings .mb-3 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    width: 15rem;
+  }
+}
+@media (max-width: 1440px) {
+  .App .body .user-page .user-profile-settings {
+    width: 100%;
+  }
+}
 .App .body .user-page .mb-3 {
   width: 30rem;
 }
@@ -12522,11 +12585,6 @@ body {
   background-color: #BE3144;
   border-color: #F05941;
   color: #FFF;
-}
-@media (max-width: 837px) {
-  .App .body .user-page .mb-3 {
-    width: 25rem;
-  }
 }
 @media (max-width: 837px) {
   .App .body .user-page .mb-3 {
