@@ -2,7 +2,7 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 import {useState , useEffect } from "react";
-import Button from '../../ReuseComp/Button';
+import Button from '../../../ReuseComp/Button';
 
 function TrainerProfile({ user , setAlertVariant , setAlertMessage , setShowAlert , navigate , loading , setIsLoading}){
 

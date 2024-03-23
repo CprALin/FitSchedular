@@ -5,7 +5,11 @@ import {useLocation} from "react-router-dom";
 function Footer(){
     const location = useLocation();
 
-    const isOnUserPage = location.pathname === "/user-profile" || location.pathname === "/login-page" || location.pathname === "/register-page" || location.pathname === "/user-appointments";
+    const isOnUserPage = location.pathname === "/user-profile" || 
+                         location.pathname === "/login-page" || 
+                         location.pathname === "/register-page" || 
+                         location.pathname === "/user-appointments" ||
+                         location.pathname === "/add-trainer";
 
     return(
         <footer className="footer" id="footer" style={{ display : isOnUserPage ? 'none' : 'flex'}}>

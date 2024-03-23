@@ -5,9 +5,9 @@ import { IoMdSettings } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { useNavigate , useLocation } from "react-router-dom";
 import { useState } from "react";
-import AdminOption from "./AdminOptions";
-import TrainerOptions from "./TrainerOptions";
-import { useAuth } from "../../../Utils/AuthContext";
+import AdminOption from "../Admin/AdminOptions";
+import TrainerOptions from "../Trainer/TrainerOptions";
+import { useAuth } from "../../../../Utils/AuthContext";
 
 function UserOptions() {
     const navigate = useNavigate();
@@ -44,7 +44,7 @@ function UserOptions() {
                         <Link>Billing</Link>
                     </div>
 
-                    {user.data.user.role === "admin" ? <AdminOption /> : 
+                    {user.data.user.role === "admin" ? <AdminOption isActive={isActive} setIsActive={setIsActive}/> : 
                      user.data.user.role === "trainer" ? <TrainerOptions /> : 
                      null    
                     }

@@ -3,12 +3,12 @@ import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import { useState , useEffect } from "react";
 import Button from "../../ReuseComp/Button";
-import UserOptions from "./UserOptions";
+import UserOptions from "./User/UserOptions";
 import axios from "axios";
 import CustomAlert from "../../../Utils/CustomAlert";
 import { useNavigate } from "react-router-dom";
 import ConfirmAlert from "../../../Utils/ConfirmAlert";
-import TrainerProfile from "./TrainerProfile";
+import TrainerProfile from "./Trainer/TrainerProfile";
 import { Buffer } from "buffer";
 //import Cookies from "js-cookie";
 
