@@ -30,7 +30,7 @@ exports.resizeTrainerImages = catchAsync(async (req , res , next) => {
     req.body.trainerPhotos = [];
     await Promise.all(
        req.files.trainerPhotos.map(async (file , i) => {
-            const fileName = `trainer-${req.user.id}-${Date.now()}-${i + 1}.png`;
+            const fileName = `trainer-${req.user.id}-${i + 1}.png`;
 
             await sharp(file.buffer)
                .resize(2000,1333, sharp.fit)
@@ -113,7 +113,7 @@ exports.updateCurrentTrainer = catchAsync(async (req , res , next) => {
       const filteredBody = filterObj(req.body , 'className' , 'classDescription' , 'occupation' , 'studies');
       
       if (req.files.trainerPhotos) {     
-         const imagePaths = req.files.trainerPhotos.map((file,i) => `trainer-${req.user.id}-${Date.now()}-${i + 1}.png`);
+         const imagePaths = req.files.trainerPhotos.map((file,i) => `trainer-${req.user.id}-${i + 1}.png`);
          filteredBody.trainerPhotos = imagePaths;
       }
 

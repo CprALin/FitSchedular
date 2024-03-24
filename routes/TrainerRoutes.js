@@ -1,9 +1,19 @@
 const express = require('express');
 const TrainerRouter = require('../controllers/TrainerController');
 const authController = require('../controllers/AuthController');
+const path = require('path');
 
 //ROUTES
 const router = express.Router();
+
+router.get('/getTrainerPhoto/:fileName' , (req , res) => {
+      const filename = req.params.fileName;
+  
+      const imagePath = path.join(__dirname, '../img/trainers', filename);
+  
+      res.sendFile(imagePath);
+});
+
 
 router.get('/allTrainers' , TrainerRouter.getAllTrainers);
 router.route('/:id').get(TrainerRouter.getTrainer);
