@@ -42,8 +42,9 @@ function TrainerProfile({ user , setAlertVariant , setAlertMessage , setShowAler
         formData.append('occupation' , occupation);
         formData.append('studies' , studies);
 
-        selectedFiles.forEach((file) => {
-            formData.append(`trainerPhotos`, file);
+        selectedFiles.forEach((file , i) => {
+            const fileName = `trainer-${user.data.user._id}-${i + 1}.png`;
+            formData.append(`trainerPhotos`, file , fileName);
         });
 
         try 

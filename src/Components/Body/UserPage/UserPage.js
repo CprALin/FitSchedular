@@ -19,7 +19,7 @@ function UserPage(){
     const { user , logout } = useAuth();
     const [name , setName] = useState(`${user.data.user.name}`);
     const [email , setEmail] = useState(`${user.data.user.email}`);
-    const [ selectedFile , setSelectedFile ] = useState(`user-${user.data.user._id}-${Date.now()}.png`);
+    const [ selectedFile , setSelectedFile ] = useState(`user-${user.data.user._id}.png`);
 
     const [alertMessage , setAlertMessage] = useState('');
     const [alertVariant , setAlertVariant] = useState('');
