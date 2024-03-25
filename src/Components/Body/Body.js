@@ -7,6 +7,7 @@ import { useAuth } from "../../Utils/AuthContext";
 import UserAppointments from "./UserPage/User/UserAppointments";
 import AddTrainer from "./UserPage/Admin/AddTrainer";
 import ClassesPage from "./ClassesPage/ClassesPage";
+import TrainerPage from "./TrainerPage/TrainerPage";
 
 function Body(){
     const { isAuth } = useAuth();
@@ -16,6 +17,7 @@ function Body(){
             <Routes>
                 <Route exact path="/" element={<StartPage />}/>
                 <Route path="/classes-page" element={<ClassesPage />} />
+                <Route path="/trainer-page/:id" element={<TrainerPage />} />
                 <Route path="/user-profile" element={isAuth ? <UserPage /> : <Navigate to="/login-page"/>}/>
                 <Route path="/user-appointments" element={isAuth ? <UserAppointments /> : <Navigate to={"/login-page"}/>} />
                 <Route path="/add-trainer" element={isAuth ? <AddTrainer /> : <Navigate to={"/login-page"} />} />

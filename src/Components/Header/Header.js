@@ -7,10 +7,9 @@ function Header(){
     const [isNavBarVisible, setIsNavBarVisible] = useState(true);
     const [prevScrollPos, setPrevScrollPos] = useState(0);
 
-    const isOnUserPage = location.pathname === "/user-profile" || 
-                         location.pathname === "/user-appointments" ||
-                         location.pathname === "/add-trainer" ||
-                         location.pathname === "/classes-page";
+    const isOnUserPage = location.pathname !== "/" && 
+                         location.pathname !== "/login-page" &&
+                         location.pathname !== "/register-page";
 
   
     useEffect(() => {

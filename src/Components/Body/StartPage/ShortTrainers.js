@@ -1,6 +1,7 @@
 import { useEffect , useState } from "react";
 import axios from 'axios';
 import { Buffer } from "buffer";
+import { Link } from "react-router-dom";
 
 
 function ShortTrainers(){
@@ -14,7 +15,7 @@ function ShortTrainers(){
         });
     },[]);
 
-    console.log(trainers);
+    /* console.log(trainers); */
 
     return(
         <div className="short-trainers">
@@ -50,7 +51,9 @@ function TrainerPhoto({trainer}){
     }, [trainer]);
 
     return(
-        <img src={url} alt={trainer.user.name} /> 
+        <Link to={`trainer-page/${trainer._id}`}>
+             <img src={url} alt={trainer.user.name}/> 
+        </Link>
     );
 }
 
