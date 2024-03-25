@@ -1,16 +1,14 @@
 import { useEffect , useState } from "react";
 import axios from 'axios';
+import { Buffer } from "buffer";
 
-import image1 from "../../../Images/trainer1.jpg";
-import image2 from "../../../Images/trainer2.jpg";
-import image3 from "../../../Images/trainer3.jpg";
 
 function ShortTrainers(){
     const [trainers , setTrainers] = useState([]);
 
     useEffect(() => {
         axios.get('http://localhost:8000/api/trainers/allTrainers').then((result) => {
-             setTrainers(result.data.data);   
+             setTrainers(result.data.data.data);   
         }).catch((err) => {
             console.err('Error fetching trainers data : ' , err);
         });
@@ -23,21 +21,36 @@ function ShortTrainers(){
             <h1>Team of professional trainers</h1>
 
             <div className="trainer-containers">
-
-                <div className="trainer-container">
-                    <img src={image1} alt="trainer" />
-                </div>
-
-                <div className="trainer-container">
-                    <img src={image2} alt="trainer" />
-                </div>
-
-                <div className="trainer-container">
-                    <img src={image3} alt="trainer" />
-                </div>
-
+                {trainers?.map((trainer) => (
+                    <div key={trainer._id} className="trainer-container">
+                        <TrainerPhoto trainer={trainer} />
+                    </div>
+                ))}
             </div>
         </div>
+    );
+}
+
+function TrainerPhoto({trainer}){
+    const [url , setUrl] = useState('');
+
+    useEffect(() => {
+        const fetchTrainerPhoto = async () => {
+            try
+            {
+                const response = await axios.get(`http://localhost:8000/api/trainers/getTrainerPhoto/${trainer.user.photo}`, { responseType: 'arraybuffer' });
+                const base64Image = Buffer.from(response.data, 'binary').toString('base64');
+                setUrl(`data:image/png;base64,${base64Image}`);
+            }catch(err){
+                setUrl(require('../../../Images/users/default.png'));
+            }
+        }
+
+        fetchTrainerPhoto();
+    }, [trainer]);
+
+    return(
+        <img src={url} alt={trainer.user.name} /> 
     );
 }
 
