@@ -6,10 +6,18 @@ const path = require('path');
 //ROUTES
 const router = express.Router();
 
-router.get('/getTrainerPhoto/:fileName' , (req , res) => {
+router.get('/getTrainerPhotos/:fileName' , (req , res) => {
       const filename = req.params.fileName;
   
       const imagePath = path.join(__dirname, '../img/trainers', filename);
+  
+      res.sendFile(imagePath);
+});
+
+router.get('/getTrainerPhoto/:fileName' , (req, res) => {
+      const filename = req.params.fileName;
+  
+      const imagePath = path.join(__dirname, '../img/users', filename);
   
       res.sendFile(imagePath);
 });
