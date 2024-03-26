@@ -1,7 +1,6 @@
 import { useEffect , useState } from "react";
 import axios from 'axios';
-import { Buffer } from "buffer";
-import { Link } from "react-router-dom";
+import TrainerPhoto from "../TrainerPage/TrainerPhoto";
 
 
 function ShortTrainers(){
@@ -15,7 +14,7 @@ function ShortTrainers(){
         });
     },[]);
 
-    /* console.log(trainers); */
+    console.log(trainers);
 
     return(
         <div className="short-trainers">
@@ -24,36 +23,11 @@ function ShortTrainers(){
             <div className="trainer-containers">
                 {trainers?.map((trainer) => (
                     <div key={trainer._id} className="trainer-container">
-                        <TrainerPhoto trainer={trainer} />
+                        <TrainerPhoto trainerId={trainer._id} trainerPhoto={trainer.user.photo} trainerName={trainer.user.name} />
                     </div>
                 ))}
             </div>
         </div>
-    );
-}
-
-function TrainerPhoto({trainer}){
-    const [url , setUrl] = useState('');
-
-    useEffect(() => {
-        const fetchTrainerPhoto = async () => {
-            try
-            {
-                const response = await axios.get(`http://localhost:8000/api/trainers/getTrainerPhoto/${trainer.user.photo}`, { responseType: 'arraybuffer' });
-                const base64Image = Buffer.from(response.data, 'binary').toString('base64');
-                setUrl(`data:image/png;base64,${base64Image}`);
-            }catch(err){
-                setUrl(require('../../../Images/users/default.png'));
-            }
-        }
-
-        fetchTrainerPhoto();
-    }, [trainer]);
-
-    return(
-        <Link to={`trainer-page/${trainer._id}`}>
-             <img src={url} alt={trainer.user.name}/> 
-        </Link>
     );
 }
 
