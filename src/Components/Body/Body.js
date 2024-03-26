@@ -17,7 +17,7 @@ function Body(){
             <Routes>
                 <Route exact path="/" element={<StartPage />}/>
                 <Route path="/classes-page" element={<ClassesPage />} />
-                <Route path="/trainer-page/:id" element={<TrainerPage />} />
+                <Route path="/trainer-page/:trainerId" element={<TrainerPage />} />
                 <Route path="/user-profile" element={isAuth ? <UserPage /> : <Navigate to="/login-page"/>}/>
                 <Route path="/user-appointments" element={isAuth ? <UserAppointments /> : <Navigate to={"/login-page"}/>} />
                 <Route path="/add-trainer" element={isAuth ? <AddTrainer /> : <Navigate to={"/login-page"} />} />

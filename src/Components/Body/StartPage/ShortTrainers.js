@@ -11,7 +11,7 @@ function ShortTrainers(){
         axios.get('http://localhost:8000/api/trainers/allTrainers').then((result) => {
              setTrainers(result.data.data.data);   
         }).catch((err) => {
-            console.err('Error fetching trainers data : ' , err);
+            console.log('Error fetching trainer data : ' , err);
         });
     },[]);
 
