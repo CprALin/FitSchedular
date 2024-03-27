@@ -12591,6 +12591,90 @@ body {
     width: 15rem;
   }
 }
+.App .body .user-page .trainer-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.App .body .user-page .trainer-page #trainer-profile-img {
+  border-radius: 10px;
+  border: solid 2px #FFF;
+  height: 250px;
+  width: 250px;
+}
+.App .body .user-page .trainer-page .trainer-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  margin: 60px;
+}
+.App .body .user-page .trainer-page .trainer-info h1, .App .body .user-page .trainer-page .trainer-info .h1 {
+  text-decoration: underline;
+}
+.App .body .user-page .trainer-page .trainer-info span {
+  font-weight: bolder;
+}
+.App .body .user-page .trainer-page .class-description {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #D9D9D9;
+  color: #000000;
+  font-size: larger;
+  height: 30rem;
+}
+.App .body .user-page .trainer-page .class-description p {
+  width: 80%;
+}
+.App .body .user-page .trainer-page .class-description #class-title {
+  font-weight: bolder;
+  font-size: larger;
+}
+@media (max-width: 1440px) {
+  .App .body .user-page .trainer-page .class-description {
+    font-size: medium;
+  }
+}
+.App .body .user-page .trainer-page .trainer-images {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin: 60px;
+}
+.App .body .user-page .trainer-page .trainer-images #trainer-photos {
+  cursor: pointer;
+  border-radius: 10px;
+  width: 20em;
+  height: 15em;
+  box-shadow: 7px 4px 4px rgba(225, 95, 51, 0.784);
+  margin: 20px;
+}
+.App .body .user-page .trainer-page .trainer-images #trainer-photos:hover {
+  transform: scale(1.05);
+  transition: ease 0.4s;
+}
+@media (max-width: 1440px) {
+  .App .body .user-page {
+    justify-content: center;
+  }
+  .App .body .user-page .trainer-info {
+    justify-content: center;
+    flex-direction: column;
+  }
+  .App .body .user-page .trainer-info .trainer-data {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .App .body .user-page .trainer-info .trainer-data p {
+    text-align: center;
+  }
+}
 .App .footer {
   display: flex;
   justify-content: space-between;

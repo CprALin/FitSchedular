@@ -30,15 +30,22 @@ function TrainerPage(){
             <h1 id="close" onClick={handleHomePage}>x</h1>
 
             <div className="trainer-page">
-               <TrainerPhoto trainerId={trainerData._id} trainerPhoto={trainerData.photo} trainerName={trainerData.name} />
+                <div className="trainer-info">
+                     <TrainerPhoto trainerId={trainerData._id} trainerPhoto={trainerData.photo} trainerName={trainerData.name} />
+                     <div className="trainer-data">
+                        <h1>{trainerData.name}</h1> 
+                        <p><span>Occupation :</span> {trainer.occupation}</p>
+                        <p><span>Studies :</span> {trainer.studies}</p>
+                     </div>
+                </div>
                
-               <div className="trainer-data">
-                  <h1>{trainerData.name}</h1> 
-                  <p>Class name : {trainer.className}</p>
-                  <p>Class description : {trainer.classDescription}</p>
-                  <p>Occupation : {trainer.occupation}</p>
-                  <p>Studies : {trainer.studies}</p>
-                  <TrainerPhotos trainerPhotos={trainer.trainerPhotos} trainerName={trainerData.name} />
+               <div className="class-description">
+                  <p id="class-title">{trainer.className}</p>
+                  <p>{trainer.classDescription}</p>
+               </div>
+
+               <div className="trainer-images">
+                       <TrainerPhotos trainerPhotos={trainer.trainerPhotos} trainerName={trainerData.name} />  
                </div>
                
             </div>
@@ -73,7 +80,7 @@ function TrainerPhotos({trainerPhotos, trainerName }) {
    return (
        <>
            {urls.map((url, index) => (
-               <img key={index} src={url} alt={trainerName} />
+               <img id="trainer-photos" key={index} src={url} alt={trainerName} />
            ))}
        </>
    );

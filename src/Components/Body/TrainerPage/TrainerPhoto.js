@@ -24,7 +24,7 @@ function TrainerPhoto({trainerId , trainerPhoto , trainerName}){
 
     return(
         <Link to={`trainer-page/${trainerId}`}>
-             <img src={url} alt={trainerName}/> 
+             <img id="trainer-profile-img" src={url} alt={trainerName}/> 
         </Link>
     );
 }
