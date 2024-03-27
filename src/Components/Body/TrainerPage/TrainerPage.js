@@ -45,7 +45,7 @@ function TrainerPage(){
                </div>
 
                <div className="trainer-images">
-                       <TrainerPhotos trainerPhotos={trainer.trainerPhotos} trainerName={trainerData.name} />  
+                     <TrainerPhotos trainerPhotos={trainer.trainerPhotos} trainerName={trainerData.name} /> 
                </div>
                
             </div>
@@ -80,7 +80,7 @@ function TrainerPhotos({trainerPhotos, trainerName }) {
    return (
        <>
            {urls.map((url, index) => (
-               <img id="trainer-photos" key={index} src={url} alt={trainerName} />
+               <img id="trainer-photo" key={index} src={url} alt={trainerName} />
            ))}
        </>
    );

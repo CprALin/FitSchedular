@@ -881,6 +881,26 @@ body{
               {
                 font-weight: bolder;
               }
+
+              @media(max-width:1440px)
+              {
+                justify-content: center;
+                flex-direction: column;
+                margin: 60px 0 0 0;
+
+                .trainer-data
+                {
+                  margin-top: 20px;
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+
+                  p
+                  {
+                    text-align: center;
+                  }
+                }
+              }
            }
 
            .class-description
@@ -912,57 +932,36 @@ body{
 
            .trainer-images
            {
-              width: 100%;
-              display: flex;
-              justify-content: space-evenly; 
-              flex-wrap: wrap;
-              margin: 60px;
+             display: flex;
+             justify-content: center;
+             flex-wrap: wrap;
+             margin: 60px;
 
-              #trainer-photos
-              {
-                cursor: pointer;
-                border-radius: 10px;
-                width: 20em;
-                height: 15em;
-                box-shadow: 7px 4px 4px  rgba(225, 95, 51, 0.784);
-                margin: 20px;
-
-                &:hover 
-                {
-                  transform: scale(1.05);
-                  transition: ease 0.4s;
-                }
-              }
-           }
-        }
-
-        @media(max-width:1440px)
-        {
-
-          &
-          {
-            justify-content: center;
-          }
-
-          .trainer-info 
-          {
-            justify-content: center;
-            flex-direction: column;
-
-            .trainer-data
+            #trainer-photo
             {
-              margin-top: 20px;
-              display: flex;
-              flex-direction: column;
-              align-items: center;
+              cursor: pointer;
+              border-radius: 10px;
+              width: 320px;
+              height: 280px;
+              object-fit: cover;
+              margin: 40px;
+              box-shadow: 8px 4px 4px $fourColor;
 
-              p
+              &:hover 
               {
-                text-align: center;
+                 transform: scale(1.05);
+                 transition: ease 0.4s ;
+
+                 @media(max-width:528px)
+                 {
+                   transform: none;
+                   transition: none;
+                 }
               }
             }
-          }
-
+        
+           }
+           
         }
       }
   }
