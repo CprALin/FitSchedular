@@ -25,14 +25,6 @@ const appointmentSchema = new mongoose.Schema({
    toObject : { virtuals : true }
 });
 
-appointmentSchema.index({slug : 1});
-
-appointmentSchema.virtual('reviews' , {
-      ref : 'Review',
-      foreignField : 'appointment',
-      localField : '_id'
-});
-
 appointmentSchema.virtual('participations' , {
       ref : 'Participation',
       foreignField : 'appointment',

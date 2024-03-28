@@ -15,10 +15,10 @@ const reviewSchema = new mongoose.Schema({
         type : Date,
         default : Date.now()
     },
-    appointment : {
+    trainer : {
         type : mongoose.Schema.ObjectId,
-        ref : 'Appointment',
-        required : [true, 'Review must belong to an appointment !']
+        ref : 'Trainer',
+        required : [true, 'Review must belong to a trainer !']
     },
     user : {
         type : mongoose.Schema.ObjectId,
@@ -30,7 +30,7 @@ const reviewSchema = new mongoose.Schema({
     toObject : { virtuals : true }
 });
 
-reviewSchema.index({appointment : 1 , user : 1} , {unique : true});
+reviewSchema.index({trainer : 1 , user : 1} , {unique : true});
 
 reviewSchema.pre(/^find/ , function(next) {
     this.populate({

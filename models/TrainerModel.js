@@ -23,7 +23,17 @@ const trainerSchema = new mongoose.Schema({
         required : [true, 'A trainer must have some studies !']
     },
     trainerPhotos : [String]
+},{
+    toJSON : { virtuals : true },
+    toObject : { virtuals : true }
+ });
+
+trainerSchema.virtual('reviews' , {
+    ref : 'Review',
+    foreignField : 'trainer',
+    localField : '_id'
 });
+
 
 //populate all documents
 trainerSchema.pre(/^find/ , function(next) {
