@@ -1,14 +1,21 @@
 import Button from "../../ReuseComp/Button";
-import image1 from "../../../Images/crossfit-photo.jpg";
-import image2 from "../../../Images/fit-photo.jpg";
-import image3 from "../../../Images/hit-photo.jpg";
+import { Buffer } from "buffer";
 import { useNavigate } from "react-router-dom";
+import { IoCreateOutline } from "react-icons/io5";
+import { useAuth } from "../../../Utils/AuthContext";
+import { useEffect , useState } from "react";
+import axios from 'axios';
 
-function ClassDiscover(){
+function ClassDiscover({trainers}){
+    const { user } = useAuth();
     const navigate = useNavigate();
 
     const handleClassesPage = () => {
         navigate('/classes-page');
+    }
+
+    const handleLoginPage = () => {
+        navigate('/login-page');
     }
 
     return (
@@ -16,27 +23,49 @@ function ClassDiscover(){
             <h1>Discover our classes</h1>
            
             <div className="class-containers">
-                <div className="class-container">
-                    <h1>Crossfit</h1>
-                    <img src={image1} alt="crossfit"/>
-                </div>
-
-                <div className="class-container">
-                    <h1>Fit</h1>
-                    <img src={image2} alt="crossfit"/>
-                </div>
-
-                <div className="class-container">
-                    <h1>Hit</h1>
-                    <img src={image3} alt="crossfit"/>
-                </div>
+                {trainers?.map((trainer) => (
+                    <div key={trainer._id} className="class-container">
+                        <h1>{trainer.className}</h1>
+                        <TrainerPhotos navigate={navigate} trainerId={trainer._id} trainerPhotos={trainer.trainerPhotos[0]} trainerName={trainer.user.name} />
+                    </div>
+                ))}
             </div>
             
-            <div className="discover-btn">
-               <Button event={handleClassesPage}>View All</Button>
+            <div className="discover-btn" style={user ? {display : 'flex'} : {display : 'none'}}>
+               <Button event={handleClassesPage}><IoCreateOutline /> Appointment</Button>
             </div>
+
+            <p style={user ? {display : 'none'} : {display : 'flex'}}>If you want to make an appointment ? <span style={{color : '#F05941' , paddingLeft : '2px' , textDecoration : 'underline' , cursor : 'pointer'}} onClick={handleLoginPage}> Login</span></p>
         </div>
     );
 }
+
+function TrainerPhotos({ navigate ,trainerId ,trainerPhotos, trainerName }) {
+    const [url, setUrl] = useState('');
+
+    const handleTrainerPage = () => {
+        navigate(`trainer-page/${trainerId}`)
+    }
+ 
+    useEffect(() => {
+        const fetchTrainerPhotos = async () => {
+            try {
+                const response = await axios.get(`http://localhost:8000/api/trainers/getTrainerPhotos/${trainerPhotos}`, { responseType: 'arraybuffer' });
+ 
+                const base64Image = Buffer.from(response.data, 'binary').toString('base64');
+                setUrl(`data:image/png;base64,${base64Image}`);
+            } catch (err) {
+                console.log("Error fetching trainer photos:", err);
+            }
+        }
+ 
+        fetchTrainerPhotos();
+    }, [trainerPhotos, trainerName]);
+ 
+    return (
+        <img onClick={handleTrainerPage} id="trainer-photo" src={url} alt={trainerName} />
+    );
+ }
+ 
 
 export default ClassDiscover;

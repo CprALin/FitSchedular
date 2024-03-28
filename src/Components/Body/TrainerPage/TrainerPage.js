@@ -10,6 +10,8 @@ function TrainerPage(){
     const [trainer , setTrainer] = useState([]);
     const [trainerData , setTrainerData] = useState([]);
 
+    window.scrollTo({ top : 0});
+
     useEffect( () => {
       axios.get(`http://localhost:8000/api/trainers/${trainerId}`).then((result) => {
           setTrainer(result.data.data.doc);
@@ -18,8 +20,6 @@ function TrainerPage(){
           console.log('Error fetching trainer data : ' , err);
        });
     },[trainerId]); 
-
-    console.log(trainer)
 
     const handleHomePage = () => {
         navigate('/');
@@ -74,8 +74,6 @@ function TrainerPhotos({trainerPhotos, trainerName }) {
 
        fetchTrainerPhotos();
    }, [trainerPhotos, trainerName]);
-
-   console.log(trainerPhotos)
 
    return (
        <>
