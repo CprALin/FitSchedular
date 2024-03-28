@@ -14,9 +14,9 @@ const appointmentSchema = new mongoose.Schema({
         type : Number,
         require : [true, 'An appointment must have a start hour !']
      },
-     finishHour : {
+     duration : {
         type : Number,
-        require : [true, 'An appointment must have a finish hour !']
+        require : [true, 'An appointment must have a duration !']
      },
      images : [String],
      slug : String
@@ -35,7 +35,11 @@ appointmentSchema.virtual('participations' , {
 appointmentSchema.pre(/^find/ , function(next) {
    this.populate({
        path : 'trainer',
-       select : 'className classDescription'
+       select : 'className user',
+       populate : {
+           path : 'user',
+           select : 'name'
+       }
    });
 
    next();
