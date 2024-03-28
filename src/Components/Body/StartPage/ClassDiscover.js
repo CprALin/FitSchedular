@@ -11,7 +11,7 @@ function ClassDiscover({trainers}){
     const navigate = useNavigate();
 
     const handleClassesPage = () => {
-        navigate('/classes-page');
+        navigate('/appointments-page');
     }
 
     const handleLoginPage = () => {

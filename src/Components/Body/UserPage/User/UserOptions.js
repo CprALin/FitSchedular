@@ -45,7 +45,7 @@ function UserOptions() {
                     </div>
 
                     {user.data.user.role === "admin" ? <AdminOption isActive={isActive} setIsActive={setIsActive}/> : 
-                     user.data.user.role === "trainer" ? <TrainerOptions /> : 
+                     user.data.user.role === "trainer" ? <TrainerOptions isActive={isActive} setIsActive={setIsActive}/> : 
                      null    
                     }
                 

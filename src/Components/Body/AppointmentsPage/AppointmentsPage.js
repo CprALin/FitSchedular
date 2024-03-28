@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-function ClassesPage(){
+function AppointmentsPage(){
     const navigate = useNavigate();
 
     const handleHomePage = () => {
@@ -15,4 +15,4 @@ function ClassesPage(){
     );
 }
 
-export default ClassesPage;
+export default AppointmentsPage;

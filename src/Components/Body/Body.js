@@ -6,8 +6,9 @@ import UserPage from "./UserPage/UserPage";
 import { useAuth } from "../../Utils/AuthContext";
 import UserAppointments from "./UserPage/User/UserAppointments";
 import AddTrainer from "./UserPage/Admin/AddTrainer";
-import ClassesPage from "./ClassesPage/ClassesPage";
 import TrainerPage from "./TrainerPage/TrainerPage";
+import AppointmentsPage from "./AppointmentsPage/AppointmentsPage";
+import AddAppointment from "./UserPage/Trainer/AddAppointment";
 
 function Body(){
     const { isAuth } = useAuth();
@@ -16,11 +17,12 @@ function Body(){
         <div className="body">
             <Routes>
                 <Route exact path="/" element={<StartPage />}/>
-                <Route path="/classes-page" element={<ClassesPage />} />
+                <Route path="/appointments-page" element={isAuth ? <AppointmentsPage /> : <Navigate to="/login-page"/>} />
                 <Route path="/trainer-page/:trainerId" element={<TrainerPage />} />
                 <Route path="/user-profile" element={isAuth ? <UserPage /> : <Navigate to="/login-page"/>}/>
                 <Route path="/user-appointments" element={isAuth ? <UserAppointments /> : <Navigate to={"/login-page"}/>} />
                 <Route path="/add-trainer" element={isAuth ? <AddTrainer /> : <Navigate to={"/login-page"} />} />
+                <Route path="/add-appointment" element={isAuth ? <AddAppointment /> : <Navigate to={"/login-page"} />} />
                 <Route path="/login-page" element={!isAuth ? <LoginPage /> : <Navigate to="/" />}/>
                 <Route path="/register-page" element={!isAuth ? <RegisterPage /> : <Navigate to="/" />}/>
                 <Route path="*" element={<Navigate to="/"/>}/>
