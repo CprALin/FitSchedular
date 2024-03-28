@@ -12,8 +12,7 @@ exports.createAppointment = catchAsync(async (req , res , next) => {
 
       const newAppointment = await Appointment.create({
            trainer : trainer._id,
-           onDate : req.body.onDate,
-           startHour : req.body.startHour,
+           onDateTime : req.body.onDateTime,
            finishHour : req.body.finishHour
       });
 

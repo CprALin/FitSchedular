@@ -6,24 +6,34 @@ const appointmentSchema = new mongoose.Schema({
         ref : 'Trainer',
         required : [true, 'An appointment must belog to a trainer !']
      },
-     onDate : {
+     onDateTime : {
         type : Date,
-        required : [true, 'An appointment must have a date !']
+        required : [true, 'An appointment must have a date and time !']
      },
-     startHour : {
-        type : Number,
-        require : [true, 'An appointment must have a start hour !']
-     },
-     duration : {
-        type : Number,
-        require : [true, 'An appointment must have a duration !']
-     },
-     images : [String],
-     slug : String
+     finishHour : {
+        type : Date,
+        require : [true, 'An appointment must have a finish hour !']
+     }
 }, {
    toJSON : { virtuals : true },
    toObject : { virtuals : true }
 });
+
+appointmentSchema.path('onDateTime').validate({
+   validator: async function() {
+
+       const existingAppointments = await this.constructor.find({
+           onDateTime: { $lt: this.finishHour }, 
+           finishHour: { $gt: this.onDateTime } 
+       });
+
+      
+       return !(existingAppointments.length > 0);
+   },
+   message: 'Another appointment exists in this time interval'
+});
+
+appointmentSchema.index({ onDateTime: 1 }, { unique: true });
 
 appointmentSchema.virtual('participations' , {
       ref : 'Participation',
@@ -44,7 +54,6 @@ appointmentSchema.pre(/^find/ , function(next) {
 
    next();
 });
-
 
 const Appointment = mongoose.model('Appointment' , appointmentSchema);
 
