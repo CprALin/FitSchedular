@@ -944,8 +944,8 @@ body{
               width: 320px;
               height: 280px;
               object-fit: cover;
-              margin: 40px;
               box-shadow: 8px 4px 4px $fourColor;
+              margin: 40px;
 
               &:hover 
               {
@@ -960,6 +960,17 @@ body{
               }
             }
         
+            @media(max-width:536px)
+            {
+               margin: 50px 0 0 0 ;
+
+               #trainer-photo
+               {
+                 margin: 10px 0 40px 0;
+                 width: 240px;
+                 height: 180px;
+               }
+            }
            }
            
         }

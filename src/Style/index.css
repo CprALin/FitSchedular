@@ -12667,8 +12667,8 @@ body {
   height: 280px;
   -o-object-fit: cover;
      object-fit: cover;
-  margin: 40px;
   box-shadow: 8px 4px 4px #F05941;
+  margin: 40px;
 }
 .App .body .user-page .trainer-page .trainer-images #trainer-photo:hover {
   transform: scale(1.05);
@@ -12678,6 +12678,16 @@ body {
   .App .body .user-page .trainer-page .trainer-images #trainer-photo:hover {
     transform: none;
     transition: none;
+  }
+}
+@media (max-width: 536px) {
+  .App .body .user-page .trainer-page .trainer-images {
+    margin: 50px 0 0 0;
+  }
+  .App .body .user-page .trainer-page .trainer-images #trainer-photo {
+    margin: 10px 0 40px 0;
+    width: 240px;
+    height: 180px;
   }
 }
 .App .footer {
